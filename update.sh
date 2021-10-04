@@ -10,6 +10,7 @@ url_scripts='https://github.com/shufflewzc/faker2.git'
 
 ## 创建软链接
 link_shell
+shell_chmod
 
 ## 用于复制宠汪汪兑换脚本的变量
 filepath1=$dir_scripts/jd_joy_reward.js
