@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-set -e
 
 ## 路径
 dir_shell=/jd
@@ -12,5 +11,3 @@ link_shell
 set_config
 git clone $url_scripts $dir_scripts 
 update_crontab
-
-exec "$@"
