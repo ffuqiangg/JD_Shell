@@ -3,9 +3,11 @@ dir_log=$dir_shell/log
 dir_scripts=$dir_shell/scripts
 dir_raw=$dir_shell/raw
 dir_config=$dir_shell/config
+dir_sample=$dir_shell/sample
 
 ## 文件
 file_config=$dir_config/config.sh
+file_config_sample=$dir_sample/config.sh.sample
 file_crontab_user=$dir_config/crontab.list
 file_scripts_list=$dir_config/scripts.list
 file_upcron_notify=$dir_shell/upcron_notify.log
@@ -65,4 +67,20 @@ send_notify () {
 	title=$(echo $1 | sed 's/-/_/g')
 	msg=$(echo -e $2)
 	node $dir_shell/notify.js "$title" "$msg"
+}
+
+## 初始化配置
+set_config () {
+	make_dir $dir_config
+	make_dir $dir_log
+	make_dir $dir_raw
+	if [[ ! -s $file_config ]]; then
+		cp -f $file_config_sample $file_config
+	fi
+	if [[ ! -f $file_crontab_user ]]; then
+		cp -f $dir_sample/crontab.list $file_crontab_user
+	fi
+	if [[ ! -f $file_scripts_list ]]; then
+		cp -f $dir_sample/scripts.list $file_scripts_list
+	fi
 }
