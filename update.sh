@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 ## 文件路径、脚本网址
 dir_shell=$(dirname $(readlink -f "$0"))
