@@ -75,7 +75,7 @@ set_config () {
 	make_dir $dir_log
 	make_dir $dir_raw
 	if [[ ! -s $file_config ]]; then
-		cp -f $file_config_sample $file_config
+		cp -f $file_config_sample $dir_sample/config.sh.sample
 	fi
 	if [[ ! -f $file_crontab_user ]]; then
 		cp -f $dir_sample/crontab.list $file_crontab_user
