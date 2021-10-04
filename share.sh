@@ -14,12 +14,12 @@ file_upcron_notify=$dir_shell/upcron_notify.log
 
 ## 软链接及对应文件
 link_name=(
-	up
+	update
 	task
 	rmlog
 )
 original_name=(
-	up.sh
+	update.sh
 	task.sh
 	rmlog.sh
 )
