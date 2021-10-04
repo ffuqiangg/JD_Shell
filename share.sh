@@ -7,11 +7,12 @@ dir_shell=$(dirname $(readlink -f "$0"))
 dir_log=$dir_shell/log
 dir_scripts=$dir_shell/scripts
 dir_raw=$dir_shell/raw
+dir_config=$dir_shell/config
 
 ## 文件
-file_config=$dir_shell/config.sh
-file_crontab_user=$dir_shell/crontab.list
-file_scripts_list=$dir_shell/scripts.list
+file_config=$dir_config/config.sh
+file_crontab_user=$dir_config/crontab.list
+file_scripts_list=$dir_config/scripts.list
 file_upcron_notify=$dir_shell/upcron_notify.log
 
 ## 软链接及对应文件
