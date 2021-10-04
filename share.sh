@@ -1,8 +1,5 @@
 #!/bin/bash
 
-## 路径
-dir_shell=$(dirname $(readlink -f "$0"))
-
 ## 目录
 dir_log=$dir_shell/log
 dir_scripts=$dir_shell/scripts
