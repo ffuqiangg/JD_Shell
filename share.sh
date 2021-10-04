@@ -74,13 +74,13 @@ set_config () {
 	make_dir $dir_config
 	make_dir $dir_log
 	make_dir $dir_raw
-	if [[ ! -f ${dir_config}/config.sh.sample ]]; then
-		cp -f $file_config_sample ${dir_config}/config.sh.sample
+	if [[ ! -f $dir_config/config.sh.sample ]]; then
+		cp -f $file_config_sample $dir_config/config.sh.sample
 	fi
 	if [[ ! -f $file_crontab_user ]]; then
-		cp -f ${dir_sample}/crontab.list $file_crontab_user
+		cp -f $dir_sample/crontab.list $file_crontab_user
 	fi
 	if [[ ! -f $file_scripts_list ]]; then
-		cp -f ${dir_sample}/scripts.list $file_scripts_list
+		cp -f $dir_sample/scripts.list $file_scripts_list
 	fi
 }
