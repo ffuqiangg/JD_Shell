@@ -206,5 +206,6 @@ del_cron
 add_cron
 update_scripts_list
 send_cron_notify
+update_crontab
 
 exit 0
