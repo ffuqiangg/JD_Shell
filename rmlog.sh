@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 ## 路径
 dir_shell=$(dirname $(readlink -f "$0"))
