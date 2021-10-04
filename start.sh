@@ -2,7 +2,7 @@
 
 ## 路径
 dir_shell=/jd
-url_scripts=https://github.com/ffuqiangg/JD_Shell.git
+url_scripts=https://github.com/shufflewzc/faker2.git
 
 ## 导入函数变量
 . $dir_shell/share.sh
