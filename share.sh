@@ -71,17 +71,17 @@ send_notify () {
 
 ## 初始化配置
 set_config () {
-	make_dir $dir_config
-	make_dir $dir_log
-	make_dir $dir_raw
+	make_dir "$dir_config"
+	make_dir "$dir_log"
+	make_dir "$dir_raw"
 	if [[ ! -f $dir_config/config.sh.sample ]]; then
-		cp -f $file_config_sample $dir_config/config.sh.sample
+		cp $file_config_sample $dir_config/config.sh.sample
 	fi
 	if [[ ! -f $file_crontab_user ]]; then
-		cp -f $dir_sample/crontab.list $file_crontab_user
+		cp $dir_sample/crontab.list $file_crontab_user
 	fi
 	if [[ ! -f $file_scripts_list ]]; then
-		cp -f $dir_sample/scripts.list $file_scripts_list
+		cp $dir_sample/scripts.list $file_scripts_list
 	fi
 }
 
