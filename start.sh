@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+set -e
 
 ## 路径
 dir_shell=/jd
