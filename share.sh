@@ -1,5 +1,3 @@
-#!/bin/bash
-
 ## 目录
 dir_log=$dir_shell/log
 dir_scripts=$dir_shell/scripts
