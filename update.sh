@@ -190,6 +190,7 @@ del_cron () {
 	done
 }
 
+set_config
 update_shell	
 if [ -d $dir_scripts/.git ];then
 	git_pull_scripts $url_scripts ${dir_scripts}/
