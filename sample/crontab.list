@@ -1,13 +1,13 @@
 ## 更新脚本，库
-29 8,11,16,18,23 * * * jup 2>&1 | tee -a /root/log/update.log
+29 8,11,16,18,23 * * * update 2>&1 | tee -a /root/log/update.log
 
 ## 删除旧日志
-19 22 * * * jlog 
+19 22 * * * rmlog 
 
 # 京东月资产变动
 52 23 L * * task jd_all_bean_change
 # 京东资产变动通知强化版
-2 9 * * * task jd_bean_change_new
+2 9 * * * task jd_bean_change
 
 # 京东多合一签到
 0 0 * * * cd /root/scripts/ && task jd_bean_sign now
