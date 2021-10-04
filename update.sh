@@ -110,8 +110,10 @@ update_scripts_list () {
 
 ## 发送定时任务增减通知
 send_cron_notify () {
-	send_notify "更新定时任务" "$(cat $file_upcron_notify)"
-	[[ -f $file_upcron_notify ]] && rm $file_upcron_notify
+	if [[ -s $file_upcron_notify ]]; then
+		send_notify "更新定时任务" "$(cat $file_upcron_notify)"
+		rm $file_upcron_notify
+	fi
 }
 
 ## 新增定时任务
