@@ -11,3 +11,5 @@ link_shell
 set_config
 git clone $url_scripts $dir_scripts 
 update_crontab
+
+tail -f /dev/null
