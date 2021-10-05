@@ -8,10 +8,6 @@ url_scripts='https://github.com/shufflewzc/faker2.git'
 . $dir_shell/config/config.sh
 . $dir_shell/share.sh
 
-## 创建软链接
-link_shell
-shell_chmod
-
 ## 用于复制宠汪汪兑换脚本的变量
 filepath1=$dir_scripts/jd_joy_reward.js
 filepath2=$dir_scripts/jd_joy_reward2.js
@@ -110,7 +106,7 @@ update_scripts_list () {
 
 ## 发送定时任务增减通知
 send_cron_notify () {
-	if [[ -s $file_upcron_notify ]]; then
+	if [[ -f $file_upcron_notify ]]; then
 		send_notify "更新定时任务" "$(cat $file_upcron_notify)"
 		rm $file_upcron_notify
 	fi
@@ -194,11 +190,10 @@ del_cron () {
 }
 
 set_config
-update_shell	
 if [ -d $dir_scripts/.git ];then
-	git_pull_scripts $url_scripts ${dir_scripts}/
+	git_pull_scripts $url_scripts ${dir_scripts}
 else
-	git_clone_scripts $url_scripts ${dir_scripts}/
+	git_clone_scripts $url_scripts ${dir_scripts}
 fi
 if [[ ! -f $filepath2 || $filepath1 -nt $filepath2 ]];then
 	cp_joyreward_scripts
