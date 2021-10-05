@@ -53,6 +53,5 @@ if [ -d $dir_scripts/.git ];then
 else
 	git_clone_scripts $url_scripts ${dir_scripts}
 fi
-update_crontab
 
 exit 0
