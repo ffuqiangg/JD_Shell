@@ -8,6 +8,10 @@ url_scripts='https://github.com/shufflewzc/faker2.git'
 . $dir_shell/config/config.sh
 . $dir_shell/share.sh
 
+## 创建软链接
+link_shell
+shell_chmod
+
 ## 用于复制宠汪汪兑换脚本的变量
 filepath1=$dir_scripts/jd_joy_reward.js
 filepath2=$dir_scripts/jd_joy_reward2.js
@@ -189,7 +193,7 @@ del_cron () {
 	done
 }
 
-set_config
+set_config	
 if [ -d $dir_scripts/.git ];then
 	git_pull_scripts $url_scripts ${dir_scripts}
 else
