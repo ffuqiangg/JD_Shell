@@ -12,10 +12,6 @@ url_scripts='https://github.com/shufflewzc/faker2.git'
 link_shell
 shell_chmod
 
-## 用于复制宠汪汪兑换脚本的变量
-filepath1=$dir_scripts/jd_joy_reward.js
-filepath2=$dir_scripts/jd_joy_reward2.js
-
 ## npm install
 npm_install () {
 	local dir_current=$(pwd)
