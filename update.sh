@@ -33,6 +33,7 @@ usage () {
     echo "使用帮助："
     echo "update         # 更新所有脚本，添加定时任务"
     echo "update scripts # 只更新jd_scripts脚本"
+    echo "update cron    # 更新crontab任务"
 }
 
 ## npm install
@@ -225,6 +226,9 @@ main () {
 					record_time
 					update_scripts
 					cp_joyreward_scripts
+					;;
+				cron)
+					update_crontab
 					;;
 				*)
 					usage
