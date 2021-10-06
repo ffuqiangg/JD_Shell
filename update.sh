@@ -4,7 +4,7 @@
 dir_shell=$(dirname $(readlink -f "$0"))
 url_scripts='https://github.com/shufflewzc/faker2.git'
 
-## 导入配置文件
+## 导入变量函数，配置文件
 . $dir_shell/config/config.sh
 . $dir_shell/share.sh
 
