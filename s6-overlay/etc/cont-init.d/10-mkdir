@@ -13,9 +13,6 @@ run_mkdir () {
     if [ ! -d $JD_DIR/log/.tmp ]; then
         mkdir -p $JD_DIR/log/.tmp
     fi
-    if [ ! -f $JD_DIR/log/.tmp/scripts.list.old ]; then
-        cp -fv $JD_DIR/sample/scripts.list.old $JD_DIR/log/.tmp/
-    fi
     if [ ! -d $JD_DIR/raw ]; then
         echo -e "没有映射raw脚本目录给本容器，在容器内创建该文件夹\n"
         mkdir -p $JD_DIR/raw
