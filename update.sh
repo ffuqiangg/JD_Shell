@@ -19,11 +19,11 @@ record_time () {
 
 系统时间：$(date "+%Y-%m-%d %H:%M:%S")
 
-脚本根目录：$dir_root
+脚本根目录：$dir_shell
 
 jd_scripts目录：$dir_scripts
 
-own脚本目录：$dir_own
+raw脚本目录：$dir_raw
 "
 }
 
