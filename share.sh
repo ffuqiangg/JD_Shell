@@ -8,7 +8,7 @@ dir_list_tmp=$dir_log/.tmp
 
 ## 文件
 file_config=$dir_config/config.sh
-file_config_sample=$dir_sample/config.sh.sample
+file_config_sample=$dir_sample/config.sample.sh
 file_crontab_user=$dir_config/crontab.list
 file_scripts_list=$dir_config/scripts.list
 file_upcron_notify=$dir_list_tmp/upcron_notify.log
