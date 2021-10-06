@@ -4,8 +4,8 @@
 dir_shell=$(dirname $(readlink -f "$0"))
 
 # 导入变量函数
-. $dir_shell/config/config.sh
 . $dir_shell/share.sh
+. $file_config
 
 ## 删除运行js脚本的旧日志
 remove_js_log () {
