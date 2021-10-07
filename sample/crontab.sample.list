@@ -7,10 +7,10 @@
 # 京东月资产变动
 52 23 L * * task jd_all_bean_change
 # 京东资产变动通知强化版
-2 9 * * * task jd_bean_change
+2 9 * * * task jd_bean_change_new
 
 # 京东多合一签到
-0 0 * * * cd /root/scripts/ && task jd_bean_sign now
+0 0 * * * task jd_bean_sign
 # 京东签到图形验证
 14 10 * * * task jd_sign_graphics
 # 升级赚京豆
@@ -24,7 +24,7 @@
 # 东东农场
 5 6-18/6 * * * task jd_fruit
 # 京喜农场
-#0 9,12,18 * * * task jd_jxnc now
+#0 9,12,18 * * * task jd_jxnc
 # 领京豆额外奖励
 23 1,12,22 * * * task jd_bean_home
 # 赚京豆
@@ -34,7 +34,7 @@
 # 女装盲盒抽京豆
 35 1,23 * * * task jd_nzmh
 # 京东手机狂欢城
-#0 0-18/6 * * * task jd_carnivalcity now
+#0 0-18/6 * * * task jd_carnivalcity
 # 京东手机狂欢城互助
 #10 0,8 * * * task jd_carnivalcity_help
 # 小鸽有礼
@@ -68,9 +68,9 @@
 # 宠汪汪每日助力
 30 23 * * * task jd_joy_park_help
 # 宠汪汪积分兑换
-59 7,15,23 * * * task jd_joy_reward now
+59 7,15,23 * * * task jd_joy_reward
 # 宠汪汪积分兑换2
-1 16 * * * task jd_joy_reward2 now
+1 16 * * * task jd_joy_reward2
 # 宠汪汪赛跑助力
 15 10 * * * task jd_joy_run
 # 宠汪汪偷积分狗粮
@@ -80,7 +80,7 @@
 # 京喜牧场
 20 0-23/3 * * * task jd_jxmc
 # 开学充电站
-#30 1 * * * task jd_kxcdz now
+#30 1 * * * task jd_kxcdz
 # 来电好物季
 #12 1 * * * task jd_ldhwj
 # 京东直播
@@ -118,7 +118,7 @@
 # 东东超市
 11 * * * * task jd_superMarket
 # 东东超市兑换
-59 23 * * * task jd_blueCoin now
+59 23 * * * task jd_blueCoin
 # 取关主播
 55 6 * * * task jd_unsubscriLive
 # 取关店铺商品
@@ -140,7 +140,7 @@
 # iqoo生而为赢
 2 12 28-31,1-12 8,9 * task jd_iqoo_run
 # 京东汽车兑换
-0 0 * * * task jd_car_exchange_xh now
+0 0 * * * task jd_car_exchange_xh
 # 心相印古蜀寻宝
 12 9,15 1-30 9,10 * task jd_xinxiangyin
 # 特务Z
@@ -158,7 +158,7 @@
 # 动人影像馆
 23 10,22 13-26 9 * task jd_film_museum
 # 企有此礼
-30 0 * * * task jd_qycl now
+30 0 * * * task jd_qycl
 # 超店会员福利社
 44 9,15 * * * task jd_fansa
 # 小米积分脚本
@@ -176,7 +176,7 @@
 # 女神狂欢 大牌盛典
 13 9 22-30 9 * task jd_goddess
 # 汪汪乐园每日任务
-0 0,7,9,17,20 * * * task jd_joy_park_task now
+0 0,7,9,17,20 * * * task jd_joy_park_task
 # 店铺签到f.q
 3 0 * * * task jd_shopsign
 # 集魔方
