@@ -8,6 +8,9 @@ export TG_USER_ID=''
 ## 保留脚本运行日志天数
 export RmLogDaysAgo="7"
 
+## 随机最大延迟，秒
+RandomDelay="300"
+
 ## 独立js脚本文件
 OwnRawFile=(
 	#https://raw.githubusercontent.com/Ariszy/Private-Script/master/JD/zy_xyzzh.js
