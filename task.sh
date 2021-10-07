@@ -16,11 +16,12 @@ usage () {
 
 ## 随机延迟执行函数
 random_delay () {
-	local random_delay_max=$RandomDelay
+	local random_delay_max=$RandomMax
+	local random_delay_min=$RandomMin
 	if [[ $random_delay_max ]] && [[ $random_delay_max -gt 0 ]]; then
 		local current_min=$(date "+%-M")
 		if [[ $current_min -gt 2 && $current_min -lt 29 ]] || [[ $current_min -gt 31 && $current_min -lt 59 ]]; then
-			delay_second=$((RANDOM % $random_delay_max + 1))
+			delay_second=$(make_random $random_delay_max $random_delay_min)
 			echo -e "\n命令未添加 \"now\"，随机延迟 $delay_second 秒后再执行任务，如需立即终止，请按 CTRL+C...\n"
 			sleep $delay_second
 		fi
