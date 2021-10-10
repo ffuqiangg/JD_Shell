@@ -29,19 +29,26 @@ raw脚本目录：$dir_raw
 
 ## 使用帮助
 usage () {
-    define_cmd
     echo "使用帮助："
     echo "update         # 更新所有脚本，添加定时任务"
     echo "update scripts # 只更新jd_scripts脚本"
     echo "update cron    # 更新crontab任务"
+	echo "update npm     # 按package.json更新依赖"
 }
 
-## npm install
-npm_install () {
+## 更新package.json
+update_npm () {
 	local dir_current=$(pwd)
-	cd $dir_scripts
-	npm install
-	cd $dir_current
+	[ -s $dir_sample/package.json ] && package_old=$(cat $dir_sample/package.json)
+	wget -O $dir_sample/package.json https://raw.githubusercontent.com/ffuqiangg/JD_Shell/main/sample/package.json
+	package_new=$(cat $dir_sample/package.json)
+	if [[ ! -d $dir_scripts/node_modules || "$package_old" != "$package_new" ]]; then
+		cp -f $dir_sample/package.json $dir_scripts/package.json
+		cd $dir_scripts
+		npm install
+		cd $dir_current
+	fi
+	
 }
 
 ## 克隆脚本，$1：仓库地址，$2：仓库保存路径，$3：分支（可省略）
@@ -51,7 +58,6 @@ git_clone_scripts () {
 	local branch=$3
 	[[ $branch ]] && cmd="-b $branch "
 	git clone $cmd $url $dir
-	npm_install
 }
 
 ## 更新脚本，$1：仓库地址，$2：仓库保存路径
@@ -59,7 +65,6 @@ git_pull_scripts () {
 	local url=$1
 	local dir_work=$2
 	local dir_current=$(pwd)
-	[ -f $dir_scripts/package.json ] && scripts_depend_old=$(cat $dir_scripts/package.json)
 	cd $dir_work
 	git reset --hard && git pull
 	cd $dir_current
@@ -67,8 +72,7 @@ git_pull_scripts () {
 
 ## 更新scripts
 update_scripts () {
-	# 更新前存储package.json和scripts列表
-	[ -f $dir_scripts/package.json ] && scripts_depend_old=$(cat $dir_scripts/package.json)
+	# 更新前存储scripts列表
 	ls $dir_shell/scripts/*.js > $dir_list_tmp/scripts.list.old
 
 	# 更新或克隆脚本
@@ -80,8 +84,6 @@ update_scripts () {
 
 	if [[ $exit_status -eq 0 ]]; then
         echo -e "\n更新$dir_scripts成功...\n"
-        [ -f $dir_scripts/package.json ] && scripts_depend_new=$(cat $dir_scripts/package.json)
-	    [[ "$scripts_depend_old" != "$scripts_depend_new" ]] && npm_install
 	else
 		echo -e "\n更新$dir_scripts失败，请检查原因...\n"
 	fi
@@ -238,6 +240,9 @@ main () {
 				cron)
 					update_crontab
 					;;
+				npm)
+					update_npm
+					;;
 				*)
 					usage
 					;;
@@ -246,6 +251,7 @@ main () {
 		0)
 			record_time
 			update_scripts
+			update_npm
 			cp_joyreward_scripts
 			update_own_raw
 			create_scripts_list
