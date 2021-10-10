@@ -33,10 +33,10 @@ usage () {
     echo "update         # 更新所有脚本，添加定时任务"
     echo "update scripts # 只更新jd_scripts脚本"
     echo "update cron    # 更新crontab任务"
-	echo "update npm     # 按package.json更新依赖"
+    echo "update npm     # 按package.json更新依赖"
 }
 
-## 更新package.json
+## npm install
 update_npm () {
 	local dir_current=$(pwd)
 	[ -s $dir_sample/package.json ] && package_old=$(cat $dir_sample/package.json)
