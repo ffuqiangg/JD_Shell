@@ -136,7 +136,7 @@ create_scripts_list () {
 
 ## 新增定时任务
 add_cron () {
-	for add_cron_list in $(diff $file_list_old $scripts_list_new | grep "+" | grep -v '@\|scripts.list' | sed 's/+//g'); do
+	for add_cron_list in $(diff $scripts_list_old $scripts_list_new | grep "+" | grep -v '@\|scripts.list' | sed 's/+//g'); do
 		if [[ -n $add_cron_list ]]; then
 			add_task_name=$(echo $add_cron_list | awk -F "/" '{print $NF}')
 			add_task_name=${add_task_name%%.*}
