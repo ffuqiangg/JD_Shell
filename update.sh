@@ -40,7 +40,7 @@ usage () {
 update_npm () {
 	local dir_current=$(pwd)
 	[ -s $dir_sample/package.json ] && package_old=$(cat $dir_sample/package.json)
-	wget -O $dir_sample/package.json https://raw.githubusercontent.com/ffuqiangg/JD_Shell/main/sample/package.json
+	wget -c https://raw.githubusercontent.com/ffuqiangg/JD_Shell/main/sample/package.json -O $dir_sample/package.json >/dev/null 2>&1
 	package_new=$(cat $dir_sample/package.json)
 	if [[ ! -d $dir_scripts/node_modules || "$package_old" != "$package_new" ]]; then
 		cp -f $dir_sample/package.json $dir_scripts/package.json
