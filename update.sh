@@ -72,7 +72,7 @@ git_pull_scripts () {
 ## 更新scripts
 update_scripts () {
 	# 更新前存储scripts列表
-	ls $dir_shell/scripts/*.js > $dir_list_tmp/scripts.list.old
+	ls $dir_shell/scripts/*.js > $scripts_list_old
 
 	# 更新或克隆脚本
 	if [ -d $dir_scripts/.git ];then
@@ -131,7 +131,7 @@ update_own_raw () {
 
 ## 创建新脚本清单
 create_scripts_list () {
-	ls $dir_shell/scripts/*.js > $dir_list_tmp/scripts.list.new
+	ls $dir_shell/scripts/*.js > $scripts_list_new
 }
 
 ## 新增定时任务
