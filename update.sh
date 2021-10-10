@@ -47,8 +47,7 @@ update_npm () {
 		cd $dir_scripts
 		npm install
 		cd $dir_current
-	fi
-	
+	fi	
 }
 
 ## 克隆脚本，$1：仓库地址，$2：仓库保存路径，$3：分支（可省略）
