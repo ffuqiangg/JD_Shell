@@ -192,7 +192,7 @@ add_cron () {
 
 ## 删除失效任务
 del_cron () {
-	for del_cron_list in $(diff $file_list_old $scripts_list_new | grep "-" | grep -v '@\|scripts.list' | sed 's/-//g'); do
+	for del_cron_list in $(diff $scripts_list_old $scripts_list_new | grep "-" | grep -v '@\|scripts.list' | sed 's/-//g'); do
 		if [[ -n $del_cron_list ]]; then
 			del_task_name=$(echo $del_cron_list | awk -F "/" '{print $NF}')
 			del_task_name=${del_task_name%%.*}
