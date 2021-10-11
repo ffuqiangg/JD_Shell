@@ -29,10 +29,10 @@ raw脚本目录：$dir_raw
 
 ## 使用帮助
 usage () {
-    echo "使用帮助："
-    echo "update         # 更新所有脚本，添加定时任务"
-    echo "update scripts # 只更新jd_scripts脚本"
-    echo "update cron    # 更新crontab任务"
+	echo "使用帮助："
+	echo "update         # 更新所有脚本，添加定时任务"
+	echo "update scripts # 只更新jd_scripts脚本"
+	echo "update cron    # 更新crontab任务"
 	echo "update npm     # 按package.json更新依赖"
 }
 
