@@ -37,7 +37,7 @@ usage () {
 }
 
 ## npm install
-update_npm () {
+npm_install () {
 	local dir_current=$(pwd)
 	[ -s $dir_sample/package.json ] && package_old=$(cat $dir_sample/package.json)
 	wget -q --no-check-certificate -O $dir_sample/package.json https://raw.githubusercontent.com/ffuqiangg/JD_Shell/main/sample/package.json
@@ -242,7 +242,7 @@ main () {
 					update_crontab
 					;;
 				npm)
-					update_npm
+					npm_install
 					;;
 				*)
 					usage
@@ -252,7 +252,7 @@ main () {
 		0)
 			record_time
 			update_scripts
-			update_npm
+			npm_install
 			cp_joyreward_scripts
 			update_own_raw
 			create_scripts_list
