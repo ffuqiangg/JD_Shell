@@ -74,7 +74,7 @@ git_pull_scripts () {
 ## 更新scripts
 update_scripts () {
 	# 更新前存储scripts列表
-	ls $dir_shell/scripts/*.js > $scripts_list_old
+	create_list $dir_scripts js $scripts_list_old 
 
 	# 更新或克隆脚本
 	if [ -d $dir_scripts/.git ];then
@@ -129,11 +129,6 @@ update_own_raw () {
         done
         [[ $rm_mark == yes ]] && rm -f $dir_raw/$file 2>/dev/null
     done
-}
-
-## 创建新脚本清单
-create_scripts_list () {
-	ls $dir_shell/scripts/*.js > $scripts_list_new
 }
 
 ## 新增定时任务
@@ -209,6 +204,13 @@ del_cron () {
 	done
 }
 
+## 修改定时任务
+update_cron () {
+	create_list $dir_scripts js $scripts_list_new
+	add_cron
+	del_cron
+}
+
 ## 更新定时任务通知
 send_cron_notify () {
 	if [[ -f $file_upcron_notify ]]; then
@@ -251,9 +253,7 @@ main () {
 			npm_install
 			cp_joyreward_scripts
 			update_own_raw
-			create_scripts_list
-			add_cron
-			del_cron
+			update_cron
 			send_cron_notify
 			fix_crontab
 			;;
