@@ -74,7 +74,7 @@ git_pull_scripts () {
 ## 更新scripts
 update_scripts () {
 	# 更新前存储scripts列表
-	create_list $dir_scripts js $scripts_list_old 
+	create_list "$dir_scripts" js "$scripts_list_old"
 
 	# 更新或克隆脚本
 	if [ -d $dir_scripts/.git ];then
@@ -206,7 +206,7 @@ del_cron () {
 
 ## 修改定时任务
 update_cron () {
-	create_list $dir_scripts js $scripts_list_new
+	create_list "$dir_scripts" js "$scripts_list_new"
 	add_cron
 	del_cron
 }
