@@ -202,8 +202,8 @@ del_cron () {
 				echo "$del_task_word 删除失败 [file] $del_task_name"
 				echo -n "$del_task_word 删除失败 [file] $del_task_name\n" >> $file_upcron_notify
 			else
-				echo "脚本 $del_task_name 无定时任务.."
-				echo -n "脚本 $del_task_name 无定时任务..\n" >> $file_upcron_notify
+				echo "移除脚本 $del_task_name 无定时任务.."
+				echo -n "移除脚本 $del_task_name 无定时任务..\n" >> $file_upcron_notify
 			fi		
 		fi
 	done
