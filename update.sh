@@ -180,11 +180,7 @@ add_cron () {
 				echo -n "$add_task_word 添加失败 [file] $add_task_name\n" >> $file_upcron_notify
 			else
 				echo "# $add_task_word" >> $file_crontab_user
-				if [[ $add_task_cron_min == 59 || $add_task_cron_min == 0 || $add_task_cron_min == 29 || $add_task_cron_min == 30 ]]; then
-					echo "$add_task_cron task $add_task_name now" >> $file_crontab_user
-				else
-					echo "$add_task_cron task $add_task_name" >> $file_crontab_user
-				fi
+				echo "$add_task_cron task $add_task_name" >> $file_crontab_user
 				echo "$add_task_word 添加成功 [file] $add_task_name"
 				echo -n "$add_task_word 添加成功 [file] $add_task_name\n" >> $file_upcron_notify
 			fi
