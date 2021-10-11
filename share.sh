@@ -88,3 +88,11 @@ make_random () {
 	random_num=$((RANDOM % $divi + $random_min))
 	echo $random_num
 }
+
+## 生成文件列表 $1：所在目录 $2：文件后缀 $3：存放列表文件
+create_list () {
+	local dir=$1
+	local filetype=$2
+	local filelist=$3
+	ls $dir/*.$filetype > $filelist
+}
