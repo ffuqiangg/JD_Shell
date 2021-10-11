@@ -33,20 +33,22 @@ usage () {
     echo "update         # 更新所有脚本，添加定时任务"
     echo "update scripts # 只更新jd_scripts脚本"
     echo "update cron    # 更新crontab任务"
-    echo "update npm     # 按package.json更新依赖"
+	echo "update npm     # 按package.json更新依赖"
 }
 
 ## npm install
 update_npm () {
 	local dir_current=$(pwd)
 	[ -s $dir_sample/package.json ] && package_old=$(cat $dir_sample/package.json)
-	wget -c https://raw.githubusercontent.com/ffuqiangg/JD_Shell/main/sample/package.json -O $dir_sample/package.json >/dev/null 2>&1
-	package_new=$(cat $dir_sample/package.json)
-	if [[ ! -d $dir_scripts/node_modules || "$package_old" != "$package_new" ]]; then
-		cp -f $dir_sample/package.json $dir_scripts/package.json
-		cd $dir_scripts
-		npm install
-		cd $dir_current
+	wget -q --no-check-certificate -O $dir_sample/package.json https://raw.githubusercontent.com/ffuqiangg/JD_Shell/main/sample/package.json
+	if [[ $? -eq 0 ]]; then
+		package_new=$(cat $dir_sample/package.json)
+		if [[ ! -d $dir_scripts/node_modules || "$package_old" != "$package_new" ]]; then
+			cp -f $dir_sample/package.json $dir_scripts/package.json
+			cd $dir_scripts
+			npm install
+			cd $dir_current
+		fi
 	fi	
 }
 
