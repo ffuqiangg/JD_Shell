@@ -221,7 +221,7 @@ send_cron_notify () {
 
 ## 修复crontab
 fix_crontab () {
-    if [[ $JD_DIR ]]; then
+    if [[ $dir_shell ]]; then
         perl -i -pe "s|( ?&>/dev/null)+||g" $list_crontab_user
         update_crontab
     fi
