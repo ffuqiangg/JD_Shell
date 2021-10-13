@@ -1,5 +1,5 @@
 ## 更新脚本，库
-29 8,11,16,18,23 * * * update 2>&1 | tee -a /root/log/update.log
+29 8,11,16,18,23 * * * update 2>&1 | tee -a /jd/log/update.log
 
 ## 删除旧日志
 19 22 * * * rmlog 
