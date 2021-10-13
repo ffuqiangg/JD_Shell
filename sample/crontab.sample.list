@@ -177,8 +177,6 @@
 13 9 22-30 9 * task jd_goddess
 # 汪汪乐园每日任务
 0 0,7,9,17,20 * * * task jd_joy_park_task
-# 店铺签到f.q
-3 0 * * * task jd_shopsign
 # 集魔方
 11 10 * * * task jd_mofang
 # 京东小魔方
