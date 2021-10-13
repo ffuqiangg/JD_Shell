@@ -75,7 +75,7 @@ git_pull_scripts () {
 update_scripts () {
 	# 首次运行使用sample目录文件，之后运行于脚本更新前生成
 	if [[ -f $dir_sample/scripts.list.old ]]; then
-		mv -fv $dir_sample/scripts.list.old $scripts_list_old
+		mv $dir_sample/scripts.list.old $scripts_list_old
 	else
 		create_list "$dir_scripts" js "$scripts_list_old"
 	fi
