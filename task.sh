@@ -45,6 +45,28 @@ run_bean_sign () {
 	cd $dir_current
 }
 
+## 一周收支统计
+bean_week () {
+	local sumin=0
+	local sumout=0
+	for day_num in {0..6}; do
+		local bean_log=$dir_log/jd_bean_change_new/$(date -d "$day_num day ago" +"%F")-*.log
+		cat $bean_log &>/dev/null
+		if [[ $? -gt 0 ]]; then
+			break
+		fi
+		local yester_day=$(date -d "$(($day_num + 1)) day ago" +"%F")
+		local beanin=$(sed -n '/^昨日收入/p' $bean_log | grep -oE '[0-9]{1,}')
+		local beanout=$(sed -n '/^昨日支出/p' $bean_log | grep -oE '[0-9]{1,}')
+		echo -n "【$yester_day】 [%2B]${beanin}京豆 [-]${beanout}京豆\n" >> $file_bean_week
+		sumin=$(($sumin + $beanin))
+		sumout=$(($sumout + $beanout))
+	done
+	echo -n "【总计】 [%2B]${sumin}京豆 [-]${sumout}京豆\n" >> $file_bean_week
+	send_notify "一周京豆收支" "$(cat $file_bean_week)"
+	rm -f $file_bean_week
+}
+
 main () {
 	case $# in
 		0)
@@ -54,6 +76,9 @@ main () {
 			case $1 in
 				jd_bean_sign)
 					run_bean_sign $1
+					;;
+				week)
+					bean_week
 					;;
 				*)
 					random_delay
