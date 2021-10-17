@@ -14,6 +14,7 @@ file_scripts_list=$dir_config/scripts.list
 file_upcron_notify=$dir_list_tmp/upcron_notify.log
 scripts_list_old=$dir_list_tmp/scripts.list.old
 scripts_list_new=$dir_list_tmp/scripts.list.new
+file_bean_week=$dir_list_tmp/bean.week.log
 
 ## 软链接及对应文件
 link_name=(
