@@ -175,13 +175,13 @@ add_cron () {
 			fi
 
 			if [[ -z $add_task_cron || -z $add_task_word ]]; then
-				echo "$add_task_word 任务添加失败 [file] $add_task_name"
-				echo -n "$add_task_word 任务添加失败 [file] $add_task_name\n" >> $file_upcron_notify
+				echo "【$add_task_word】 任务添加失败 [file] $add_task_name"
+				echo -n "【$add_task_word】 任务添加失败 [file] $add_task_name\n" >> $file_upcron_notify
 			else
 				echo "# $add_task_word" >> $file_crontab_user
 				echo "$add_task_cron task $add_task_name" >> $file_crontab_user
-				echo "$add_task_word 任务添加成功 [file] $add_task_name"
-				echo -n "$add_task_word 任务添加成功 [file] $add_task_name\n" >> $file_upcron_notify
+				echo "【$add_task_word】 任务添加成功 [file] $add_task_name"
+				echo -n "【$add_task_word】 任务添加成功 [file] $add_task_name\n" >> $file_upcron_notify
 			fi
 		fi
 	done
@@ -198,11 +198,11 @@ del_cron () {
 				del_word_line=$((del_task_line-1))
 				del_task_word=$(sed -n "${del_word_line}p" $file_crontab_user | cut -d " " -f 2-)
 				sed -i "${del_word_line},${del_task_line}d" $file_crontab_user
-				echo "$del_task_word 任务移除成功 [file] $del_task_name"
-				echo -n "$del_task_word 任务移除成功 [file] $del_task_name\n" >> $file_upcron_notify
+				echo "【$del_task_word】 任务移除成功 [file] $del_task_name"
+				echo -n "【$del_task_word】 任务移除成功 [file] $del_task_name\n" >> $file_upcron_notify
 			else
-				echo "$del_task_name 脚本无定时任务.."
-				echo -n "$del_task_name 脚本无定时任务..\n" >> $file_upcron_notify
+				echo "【$del_task_name】 无定时任务.."
+				echo -n "【$del_task_name】 无定时任务..\n" >> $file_upcron_notify
 			fi		
 		fi
 	done
