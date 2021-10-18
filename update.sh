@@ -97,7 +97,7 @@ update_scripts () {
 ## 复制宠汪汪兑换脚本并修改变量
 cp_joyreward_scripts () {
 	if [[ ! -f $dir_scripts/jd_joy_reward2.js || $dir_scripts/jd_joy_reward.js -nt $dir_scripts/jd_joy_reward2.js ]];then
-		cp -fv $dir_scripts/jd_joy_reward.js $dir_scripts/jd_joy_reward2.js
+		cp $dir_scripts/jd_joy_reward.js $dir_scripts/jd_joy_reward2.js
 		sed -i 's/JD_JOY_REWARD_NAME/JD_JOY_REWARD_NAME2/g' $dir_scripts/jd_joy_reward2.js
 	fi
 }
@@ -178,10 +178,13 @@ add_cron () {
 				echo "【$add_task_word】 添加失败 [file] $add_task_name"
 				echo -n "【$add_task_word】 添加失败 [file] $add_task_name\n" >> $file_upcron_notify
 			else
-				echo "# $add_task_word" >> $file_crontab_user
-				echo "$add_task_cron task $add_task_name" >> $file_crontab_user
-				echo "【$add_task_word】 添加成功 [file] $add_task_name"
-				echo -n "【$add_task_word】 添加成功 [file] $add_task_name\n" >> $file_upcron_notify
+				task_name=$(grep -n "\<$add_task_name\>" $file_crontab_user)
+				if [[ -z $task_name ]]; then
+					echo "# $add_task_word" >> $file_crontab_user
+					echo "$add_task_cron task $add_task_name" >> $file_crontab_user
+					echo "【$add_task_word】 添加成功 [file] $add_task_name"
+					echo -n "【$add_task_word】 添加成功 [file] $add_task_name\n" >> $file_upcron_notify
+				fi
 			fi
 		fi
 	done
