@@ -33,8 +33,6 @@
 /jd/scripts/jd_beauty.js
 /jd/scripts/jd_blueCoin.js
 /jd/scripts/jd_bookshop.js
-/jd/scripts/jd_car_exchange_xh.js
-/jd/scripts/jd_carnivalcity.js
 /jd/scripts/jd_cart_remove.js
 /jd/scripts/jd_cash.js
 /jd/scripts/jd_ccSign.js
@@ -67,7 +65,6 @@
 /jd/scripts/jd_goddess.js
 /jd/scripts/jd_gold_creator.js
 /jd/scripts/jd_goodMorning.js
-/jd/scripts/jd_gq.js
 /jd/scripts/jd_half_redrain.js
 /jd/scripts/jd_health.js
 /jd/scripts/jd_health_collect.js
@@ -95,9 +92,7 @@
 /jd/scripts/jd_kd.js
 /jd/scripts/jd_ldhwj.js
 /jd/scripts/jd_live.js
-/jd/scripts/jd_live_redrain.js
 /jd/scripts/jd_ljd_xh.js
-/jd/scripts/jd_lsj.js
 /jd/scripts/jd_market_lottery.js
 /jd/scripts/jd_mf.js
 /jd/scripts/jd_mofang.js
@@ -113,7 +108,6 @@
 /jd/scripts/jd_pigPet.js
 /jd/scripts/jd_plantBean.js
 /jd/scripts/jd_ppdz.js
-/jd/scripts/jd_priceProtect_Mod.js
 /jd/scripts/jd_productZ4Brand.js
 /jd/scripts/jd_qqxing.js
 /jd/scripts/jd_rankingList.js
@@ -126,8 +120,6 @@
 /jd/scripts/jd_speed.js
 /jd/scripts/jd_speed_redpocke.js
 /jd/scripts/jd_speed_signfaker.js
-/jd/scripts/jd_star_shop.js
-/jd/scripts/jd_superBrand.js
 /jd/scripts/jd_superMarket_xh.js
 /jd/scripts/jd_super_redrain.js
 /jd/scripts/jd_syj.js
@@ -135,13 +127,10 @@
 /jd/scripts/jd_tyt.js
 /jd/scripts/jd_unsubscriLive.js
 /jd/scripts/jd_unsubscribe_xh.js
-/jd/scripts/jd_vivo.js
-/jd/scripts/jd_vivo_add.js
 /jd/scripts/jd_wish.js
 /jd/scripts/jd_work_price.js
 /jd/scripts/jd_work_validate.js
 /jd/scripts/jd_wsdlb.js
-/jd/scripts/jd_xiaomi.js
 /jd/scripts/jd_ylyn.js
 /jd/scripts/jd_zy_ddwj_help.js
 /jd/scripts/jddjCookie.js
