@@ -217,8 +217,8 @@ del_cron () {
 ## 修改定时任务
 update_cron () {
 	create_list "$dir_scripts" js "$scripts_list_new"
-	add_cron
 	del_cron
+	add_cron
 }
 
 ## 更新定时任务通知
