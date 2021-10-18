@@ -58,7 +58,7 @@ bean_week () {
 		local yester_day=$(date -d "$(($day_num + 1)) day ago" +"%F")
 		local beanin=$(sed -n '/^昨日收入/p' $bean_log | grep -oE '[0-9]{1,}')
 		local beanout=$(sed -n '/^昨日支出/p' $bean_log | grep -oE '[0-9]{1,}')
-		echo -n "【$yester_day】 ∧ ${beanin}京豆 ∨ ${beanout}京豆\n" >> $file_bean_week
+		echo -n "$yester_day ∧ ${beanin}京豆 ∨ ${beanout}京豆\n" >> $file_bean_week
 		sumin=$(($sumin + $beanin))
 		sumout=$(($sumout + $beanout))
 	done
