@@ -147,16 +147,10 @@
 12 9,15 1-30 9,10 * task jd_xinxiangyin
 # 特务Z
 23 8,9 * * * task jd_productZ4Brand
-# 电脑配件
-27 14 * 9 * task gua_UnknownTask1
 # 内容鉴赏官
 15 3,6 * * * task jd_connoisseur
 # 寻找内容鉴赏官
 27 8,18 * 9 * task gua_UnknownTask3
-# 希捷品牌日瓜分百万京豆
-17 10 * 9,10 * task gua_UnknownTask4
-# 酒水中秋礼盒
-27 11 13-23 9 * task gua_UnknownTask5
 # 动人影像馆
 23 10,22 13-26 9 * task jd_film_museum
 # 企有此礼
