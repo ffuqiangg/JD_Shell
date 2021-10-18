@@ -98,7 +98,7 @@ update_scripts () {
 cp_joyreward_scripts () {
 	if [[ ! -f $dir_scripts/jd_joy_reward2.js || $dir_scripts/jd_joy_reward.js -nt $dir_scripts/jd_joy_reward2.js ]];then
 		cp -fv $dir_scripts/jd_joy_reward.js $dir_scripts/jd_joy_reward2.js
-		sed -i 's/JD_JOY_REWARD_NAME/JD_JOY_REWARD_NAME2/g' ${dir_scripts}/jd_joy_reward2.js
+		sed -i 's/JD_JOY_REWARD_NAME/JD_JOY_REWARD_NAME2/g' $dir_scripts/jd_joy_reward2.js
 	fi
 }
 
@@ -226,7 +226,7 @@ send_cron_notify () {
 ## 修复crontab
 fix_crontab () {
     if [[ $JD_DIR ]]; then
-        perl -i -pe "s|( ?&>/dev/null)+||g" $list_crontab_user
+        perl -i -pe "s|( ?&>/dev/null)+||g" $file_crontab_user
         update_crontab
     fi
 }
