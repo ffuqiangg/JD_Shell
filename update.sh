@@ -98,7 +98,7 @@ update_scripts () {
 cp_joyreward_scripts () {
 	if [[ ! -f $dir_scripts/jd_joy_reward2.js || $dir_scripts/jd_joy_reward.js -nt $dir_scripts/jd_joy_reward2.js ]];then
 		cp $dir_scripts/jd_joy_reward.js $dir_scripts/jd_joy_reward2.js
-		sed -i 's/JD_JOY_REWARD_NAME/JD_JOY_REWARD_NAME2/g' $dir_scripts/jd_joy_reward2.js
+		sed -i 's/JD_JOY_REWARD_NAME/JD_JOY_REWARD_NAME2/g' ${dir_scripts}/jd_joy_reward2.js
 	fi
 }
 
