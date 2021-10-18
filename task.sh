@@ -62,7 +62,7 @@ bean_week () {
 		sumin=$(($sumin + $beanin))
 		sumout=$(($sumout + $beanout))
 	done
-	echo -n "------------------\n"  >> $file_bean_week
+	echo -n "-----------------------------------------------------\n"  >> $file_bean_week
 	echo -n "【总计】 [%2B]${sumin}京豆 [-]${sumout}京豆\n" >> $file_bean_week
 	send_notify "一周京豆收支" "$(cat $file_bean_week)"
 	rm -f $file_bean_week
