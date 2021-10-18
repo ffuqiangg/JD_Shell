@@ -142,7 +142,7 @@
 # iqoo生而为赢
 2 12 28-31,1-12 8,9 * task jd_iqoo_run
 # 京东汽车兑换
-0 0 * * * task jd_car_exchange_xh
+#0 0 * * * task jd_car_exchange_xh
 # 心相印古蜀寻宝
 12 9,15 1-30 9,10 * task jd_xinxiangyin
 # 特务Z
