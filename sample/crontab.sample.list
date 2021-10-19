@@ -9,7 +9,7 @@
 # 京东资产变动通知强化版
 0 0 * * * task jd_bean_change_new
 # 一周京豆变动
-23 8 * * 1 task week
+23 8 * * 1 task week 2>&1 | tee -a /jd/log/bean_week.log
 
 # 京东多合一签到
 0 0 * * * task jd_bean_sign
