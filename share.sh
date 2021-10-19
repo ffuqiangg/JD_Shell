@@ -36,7 +36,7 @@ make_dir () {
 
 ## 创建软连接的子函数，$1：要连接的对象，$2：软连接文件路径
 link_shell_sub () {
-	local original_path="$1"
+    local original_path="$1"
     local link_path="$2"
     if [ ! -L $link_path ] || [[ $(readlink -f $link_path) != $original_path ]]; then
         rm -f $link_path 2>/dev/null
