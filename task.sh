@@ -61,7 +61,7 @@ run_bean_sign () {
 bean_week () {
 	local sumin=0
 	local sumout=0
-	write_header >> $dir_log/jd_bean_change_week.log
+	write_header
 	for day_num in {0..6}; do
 		local bean_log=$dir_log/jd_bean_change_new/$(date -d "$day_num day ago" +"%F")-*.log
 		cat $bean_log &>/dev/null
@@ -72,14 +72,14 @@ bean_week () {
 		local beanin=$(sed -n '/^昨日收入/p' $bean_log | grep -oE '[0-9]{1,}')
 		local beanout=$(sed -n '/^昨日支出/p' $bean_log | grep -oE '[0-9]{1,}')
 		echo -n "$yester_day | ∧ ${beanin}京豆 ∨ ${beanout}京豆\n" >> $file_bean_week
-		echo "$yester_day | ∧ ${beanin}京豆 ∨ ${beanout}京豆" >> $dir_log/jd_bean_change_week.log
+		echo "$yester_day | ∧ ${beanin}京豆 ∨ ${beanout}京豆"
 		sumin=$(($sumin + $beanin))
 		sumout=$(($sumout + $beanout))
 	done
 	echo -n "---------------------------------\n" >> $file_bean_week
-	echo "---------------------------------" >> $dir_log/jd_bean_change_week.log
+	echo "---------------------------------"
 	echo -n "【总计】 ∧ ${sumin}京豆 ∨ ${sumout}京豆\n" >> $file_bean_week
-	echo "【总计】 ∧ ${sumin}京豆 ∨ ${sumout}京豆" >> $dir_log/jd_bean_change_week.log
+	echo "【总计】 ∧ ${sumin}京豆 ∨ ${sumout}京豆"
 	send_notify "一周京豆收支" "$(cat $file_bean_week)"
 	rm -f $file_bean_week
 }
