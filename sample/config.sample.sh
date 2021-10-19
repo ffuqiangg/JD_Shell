@@ -6,11 +6,11 @@ export TG_BOT_TOKEN=''
 export TG_USER_ID=''
 
 ## 保留脚本运行日志天数
-RmLogDaysAgo="7"
+RmLogDaysAgo='7'
 
 ## 随机延迟最大最小值，秒
-RandomMax="300"   # 最大值
-RandomMin="5"     # 最小值
+RandomMax='300'   # 最大值
+RandomMin='5'     # 最小值
 
 ## 独立js脚本文件
 OwnRawFile=(
