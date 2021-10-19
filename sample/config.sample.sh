@@ -6,7 +6,7 @@ export TG_BOT_TOKEN=''
 export TG_USER_ID=''
 
 ## 保留脚本运行日志天数
-export RmLogDaysAgo="7"
+RmLogDaysAgo="7"
 
 ## 随机延迟最大最小值，秒
 RandomMax="300"   # 最大值
@@ -29,8 +29,3 @@ export MONEY_TREE_SELL_FRUIT='false'
 export FRUIT_BEAN_CARD='false'
 
 # ============= 短期活动变量 ==============
-## 特务Z开卡，1：开卡，2：不开卡
-export OPEN_CARD=1
-## 酒水中秋礼盒，开卡加购
-export guaunknownTask_card5='true'
-export guaunknownTask_addSku5='true'
