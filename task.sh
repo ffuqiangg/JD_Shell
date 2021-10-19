@@ -7,11 +7,23 @@ dir_shell=$(dirname $(readlink -f "$0"))
 . $dir_shell/share.sh
 . $file_config
 
+## 记录时间
+write_header () {
+	echo "
+------------------------------------------------
+
+系统时间：$(date "+%Y-%m-%d %H:%M:%S")
+
+一周京豆收支
+"
+}
+
 ## 使用说明
 usage () {
     echo "task 命令使用说明："
     echo "task <js_name>       # 运行脚本，如设置了延迟且不在0-2、29-31、59分内，将随机延迟一定秒数"
     echo "task <js_name> now   # 立即运行脚本"
+    echo "task week            # 一周京豆收支统计"
 }
 
 ## 随机延迟执行函数
@@ -49,6 +61,7 @@ run_bean_sign () {
 bean_week () {
 	local sumin=0
 	local sumout=0
+	write_header >> $dir_log/jd_bean_change_week.log
 	for day_num in {0..6}; do
 		local bean_log=$dir_log/jd_bean_change_new/$(date -d "$day_num day ago" +"%F")-*.log
 		cat $bean_log &>/dev/null
@@ -59,11 +72,14 @@ bean_week () {
 		local beanin=$(sed -n '/^昨日收入/p' $bean_log | grep -oE '[0-9]{1,}')
 		local beanout=$(sed -n '/^昨日支出/p' $bean_log | grep -oE '[0-9]{1,}')
 		echo -n "$yester_day | ∧ ${beanin}京豆 ∨ ${beanout}京豆\n" >> $file_bean_week
+		echo "$yester_day | ∧ ${beanin}京豆 ∨ ${beanout}京豆" >> $dir_log/jd_bean_change_week.log
 		sumin=$(($sumin + $beanin))
 		sumout=$(($sumout + $beanout))
 	done
-	echo -n "-----------------------------------------------------\n"  >> $file_bean_week
+	echo -n "---------------------------------\n" >> $file_bean_week
+	echo "---------------------------------" >> $dir_log/jd_bean_change_week.log
 	echo -n "【总计】 ∧ ${sumin}京豆 ∨ ${sumout}京豆\n" >> $file_bean_week
+	echo "【总计】 ∧ ${sumin}京豆 ∨ ${sumout}京豆" >> $dir_log/jd_bean_change_week.log
 	send_notify "一周京豆收支" "$(cat $file_bean_week)"
 	rm -f $file_bean_week
 }
