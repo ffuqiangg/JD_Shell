@@ -9,8 +9,8 @@ url_scripts='https://github.com/shufflewzc/faker2.git'
 . $file_config
 
 ## 创建软链接
-#link_shell
-#shell_chmod
+link_shell
+shell_chmod
 
 ## 在日志中记录时间与路径
 record_time () {
