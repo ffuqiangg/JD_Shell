@@ -34,10 +34,10 @@ make_dir () {
 	[ ! -d $dir ] && mkdir -p $dir
 }
 
-## 创建软连接的子函数，$1：软连接文件路径，$2：要连接的对象
+## 创建软连接的子函数，$1：要连接的对象，$2：软连接文件路径
 link_shell_sub () {
-    local link_path="$1"
-    local original_path="$2"
+	local original_path="$1"
+    local link_path="$2"
     if [ ! -L $link_path ] || [[ $(readlink -f $link_path) != $original_path ]]; then
         rm -f $link_path 2>/dev/null
         ln -sf $original_path $link_path
@@ -47,7 +47,7 @@ link_shell_sub () {
 ## 创建软链接
 link_shell () {
 	for ((i=0; i<${#link_name[*]}; i++)); do
-		link_shell_sub "/usr/local/bin/${link_name[i]}" "$dir_shell/${original_name[i]}"
+		link_shell_sub "$dir_shell/${original_name[i]}" "/usr/local/bin/${link_name[i]}"
 	done
 }
 
