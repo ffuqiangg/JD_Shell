@@ -18,20 +18,20 @@ file_bean_week=$dir_list_tmp/bean.week.log
 
 ## 软链接及对应文件
 link_name=(
-	update
-	task
-	rmlog
+    update
+    task
+    rmlog
 )
 original_name=(
-	update.sh
-	task.sh
-	rmlog.sh
+    update.sh
+    task.sh
+    rmlog.sh
 )
 
 ## 创建目录，$1：目录绝对路径
 make_dir () {
-	local dir=$1
-	[ ! -d $dir ] && mkdir -p $dir
+    local dir=$1
+    [ ! -d $dir ] && mkdir -p $dir
 }
 
 ## 创建软连接的子函数，$1：要连接的对象，$2：软连接文件路径
@@ -46,31 +46,25 @@ link_shell_sub () {
 
 ## 创建软链接
 link_shell () {
-	for ((i=0; i<${#link_name[*]}; i++)); do
-		link_shell_sub "$dir_shell/${original_name[i]}" "/usr/local/bin/${link_name[i]}"
-	done
-}
-
-## 设置权限子函数，$1：文件绝对路径
-shell_chmod_sub () {
-	local file=$1
-	if [ ! -x $file ]; then
-		chmod +x $file
-	fi
+    for ((i=0; i<${#link_name[*]}; i++)); do
+        link_shell_sub "$dir_shell/${original_name[i]}" "/usr/local/bin/${link_name[i]}"
+    done
 }
 
 ## 设置权限
 shell_chmod () {
-	for ((i=0; i<${#original_name[*]}; i++)); do
-		shell_chmod_sub "$dir_shell/${original_name[i]}"
-	done
+    for sh_name in $original_name; do
+        if [[ ! -x $dir_shell/$sh_name ]]; then
+            chmod +x $dir_shell/sh_name
+        fi
+    done
 }
 
 ## 发送通知 $1：标题，$2：正文
 send_notify () {
-	title=$(echo $1 | sed 's/-/_/g')
-	msg=$(echo -e $2)
-	node $dir_shell/notify.js "$title" "$msg"
+    title=$(echo $1 | sed 's/-/_/g')
+    msg=$(echo -e $2)
+    node $dir_shell/notify.js "$title" "$msg"
 }
 
 ## 更新crontab
@@ -82,18 +76,18 @@ update_crontab () {
 
 ## 生成随机数 $1：最大值 $2：最小值(缺省值1)
 make_random () {
-	local random_max=$1
-	local random_min=$2
-	local random_min=${random_min:=1}
-	local divi=$(($random_max - $random_min +1))
-	random_num=$((RANDOM % $divi + $random_min))
-	echo $random_num
+    local random_max=$1
+    local random_min=$2
+    local random_min=${random_min:=1}
+    local divi=$(($random_max - $random_min +1))
+    random_num=$((RANDOM % $divi + $random_min))
+    echo $random_num
 }
 
 ## 生成文件列表 $1：所在目录 $2：文件后缀 $3：存放列表文件
 create_list () {
-	local dir=$1
-	local filetype=$2
-	local filelist=$3
-	ls $dir/*.$filetype > $filelist
+    local dir=$1
+    local filetype=$2
+    local filelist=$3
+    ls $dir/*.$filetype > $filelist
 }
