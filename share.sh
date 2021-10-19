@@ -16,12 +16,7 @@ scripts_list_old=$dir_list_tmp/scripts.list.old
 scripts_list_new=$dir_list_tmp/scripts.list.new
 file_bean_week=$dir_list_tmp/bean.week.log
 
-## 软链接及对应文件
-link_name=(
-    update
-    task
-    rmlog
-)
+## 软链接对应文件
 original_name=(
     update.sh
     task.sh
@@ -34,24 +29,19 @@ make_dir () {
     [ ! -d $dir ] && mkdir -p $dir
 }
 
-## 创建软连接的子函数，$1：要连接的对象，$2：软连接文件路径
-link_shell_sub () {
-    local original_path="$1"
-    local link_path="$2"
-    if [ ! -L $link_path ] || [[ $(readlink -f $link_path) != $original_path ]]; then
-        rm -f $link_path 2>/dev/null
-        ln -sf $original_path $link_path
-    fi
-}
-
-## 创建软链接
+## 创建/修复 软链接
 link_shell () {
-    for ((i=0; i<${#link_name[*]}; i++)); do
-        link_shell_sub "$dir_shell/${original_name[i]}" "/usr/local/bin/${link_name[i]}"
+    for shell_name in $original_name; do
+        link_name=/usr/local/bin/${shell_name%%.*}
+        shell_name=$dir_shell/$shell_name
+        if [ ! -L $link_name ] || [[ $(readlink -f $link_name) != $shell_name ]]; then
+            rm -f $link_name 2>/dev/null
+            ln -sf $shell_name $link_name
+        fi
     done
 }
 
-## 设置权限
+## 设置/修复 权限
 shell_chmod () {
     for sh_name in $original_name; do
         if [[ ! -x $dir_shell/$sh_name ]]; then
