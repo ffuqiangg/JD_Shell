@@ -61,10 +61,9 @@ git_clone_scripts () {
     git clone $cmd $url $dir
 }
 
-## 更新脚本，$1：仓库地址，$2：仓库保存路径
+## 更新脚本，$1：仓库保存路径
 git_pull_scripts () {
-    local url=$1
-    local dir_work=$2
+    local dir_work=$1
     local dir_current=$(pwd)
     cd $dir_work
     git reset --hard && git pull
@@ -82,7 +81,7 @@ update_scripts () {
 
     # 更新或克隆脚本
     if [ -d $dir_scripts/.git ];then
-        git_pull_scripts $url_scripts ${dir_scripts}
+        git_pull_scripts ${dir_scripts}
     else
         git_clone_scripts $url_scripts ${dir_scripts}
     fi
