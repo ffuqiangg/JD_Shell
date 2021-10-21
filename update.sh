@@ -176,18 +176,18 @@ add_cron () {
             fi
 
             if [[ -z $add_task_cron || -z $add_task_word ]]; then
-                echo "【$add_task_word】 添加失败 [file] $add_task_name"
-                echo -n "【$add_task_word】 添加失败 [file] $add_task_name\n" >> $file_upcron_notify
+                echo "【$add_task_word】 $add_task_name.js 任务添加失败"
+                echo -n "【$add_task_word】 $add_task_name.js 任务添加失败\n" >> $file_upcron_notify
             else
                 task_name=$(grep -n "\<$add_task_name\>" $file_crontab_user)
                 if [[ -z $task_name ]]; then
                     echo "# $add_task_word" >> $file_crontab_user
                     echo "$add_task_cron task $add_task_name" >> $file_crontab_user
-                    echo "【$add_task_word】 添加成功 [file] $add_task_name"
-                    echo -n "【$add_task_word】 添加成功 [file] $add_task_name\n" >> $file_upcron_notify
+                    echo "【$add_task_word】 $add_task_name.js 任务添加成功"
+                    echo -n "【$add_task_word】 $add_task_name.js 任务添加成功\n" >> $file_upcron_notify
                 else
-                    echo "【$add_task_word】 已存在 [file] $add_task_name"
-                    echo -n "【$add_task_word】 已存在 [file] $add_task_name\n" >> $file_upcron_notify
+                    echo "【$add_task_word】 $add_task_name.js 任务已存在"
+                    echo -n "【$add_task_word】 $add_task_name.js 任务已存在\n" >> $file_upcron_notify
                 fi
             fi
         fi
@@ -207,11 +207,11 @@ del_cron () {
                 del_word_line=$((del_task_line-1))
                 del_task_word=$(sed -n "${del_word_line}p" $file_crontab_user | cut -d " " -f 2-)
                 sed -i "${del_word_line},${del_task_line}d" $file_crontab_user
-                echo "【$del_task_word】 移除成功 [file] $del_task_name"
-                echo -n "【$del_task_word】 移除成功 [file] $del_task_name\n" >> $file_upcron_notify
+                echo "【$del_task_word】 $del_task_name.js 任务移除成功"
+                echo -n "【$del_task_word】 $del_task_name.js 任务移除成功\n" >> $file_upcron_notify
             else
-                echo "【$del_task_name】 无定时任务.."
-                echo -n "【$del_task_name】 无定时任务..\n" >> $file_upcron_notify
+                echo "【$del_task_name】 $del_task_name.js 无定时任务.."
+                echo -n "【$del_task_name】 $del_task_name.js 无定时任务..\n" >> $file_upcron_notify
             fi      
         fi
     done
