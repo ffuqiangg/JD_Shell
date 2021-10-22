@@ -136,8 +136,6 @@ update_own_raw () {
 
 ## 新增定时任务
 add_cron () {
-    echo "-----------------------新增任务---------------------"
-    echo -n "-----------------------新增任务---------------------\n" >> $file_upcron_notify
     for add_cron_list in $(diff $scripts_list_old $scripts_list_new | grep ">" | sed 's/> //g'); do
         if [[ -n $add_cron_list ]]; then
             add_task_name=$(echo $add_cron_list | awk -F "/" '{print $NF}')
@@ -196,8 +194,6 @@ add_cron () {
 
 ## 删除失效任务
 del_cron () {
-    echo "-----------------------删除任务---------------------"
-    echo -n "-----------------------删除任务---------------------\n" >> $file_upcron_notify
     for del_cron_list in $(diff $scripts_list_old $scripts_list_new | grep "<" | sed 's/< //g'); do
         if [[ -n $del_cron_list ]]; then
             del_task_name=$(echo $del_cron_list | awk -F "/" '{print $NF}')
