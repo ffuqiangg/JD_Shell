@@ -144,35 +144,7 @@ add_cron () {
             if [[ -z $add_task_word ]]; then
                 add_task_word=$(sed -n '/^const \$/p' $add_cron_list | awk -F "'" '{print $2}')
             fi
-            
-            # 提取并验证cron
-            add_task_cron=$(cat $add_cron_list | grep -oE '[0-9*,-/]{1,}\ [0-9*,-/]{1,}\ [0-9*,-?/LWC]{1,}\ [0-9*,-/]{1,}\ [0-9*,-?/LC#]{1,}' | head -n 1)
-            add_task_cron_min=$(echo $add_task_cron | awk '{print $1}')
-            expr $add_task_cron_min + 1 &>/dev/null
-            if [ $? -eq 0 ] && [[ $add_task_cron_min -gt 59 ]]; then
-                add_task_cron=""
-            fi
-            add_task_cron_hour=$(echo $add_task_cron | awk '{print $2}')
-            expr $add_task_cron_hour + 1 &>/dev/null
-            if [ $? -eq 0 ] && [[ $add_task_cron_hour -gt 23 ]]; then
-                add_task_cron=""
-            fi
-            add_task_cron_day=$(echo $add_task_cron | awk '{print $3}')
-            expr $add_task_cron_day + 1 &>/dev/null
-            if [ $? -eq 0 ] && [[ $add_task_cron_day -gt 31 ]]; then
-                add_task_cron=""
-            fi
-            add_task_cron_month=$(echo $add_task_cron | awk '{print $4}')
-            expr $add_task_cron_month + 1 &>/dev/null
-            if [ $? -eq 0 ] && [[ $add_task_cron_month -gt 12 ]]; then
-                add_task_cron=""
-            fi
-            add_task_cron_week=$(echo $add_task_cron | awk '{print $NF}')
-            expr $add_task_cron_week + 1 &>/dev/null
-            if [ $? -eq 0 ] && [[ $add_task_cron_week -gt 7 ]]; then
-                add_task_cron=""
-            fi
-
+            add_task_cron=$(cat $add_cron_list | grep -oE '[0-9*]*[0-9*,-/]{1,}\ [0-9*,-/]{1,}\ [0-9*,-?/LWC]{1,}\ [0-9*,-/]{1,}\ [0-9*,-?/LC#]{1,}' | head -n 1)
             if [[ -z $add_task_cron || -z $add_task_word ]]; then
                 echo "$add_task_name.js 任务添加失败"
                 echo -n "$add_task_name.js 任务添加失败\n" >> $file_upcron_notify
@@ -181,11 +153,11 @@ add_cron () {
                 if [[ -z $task_name ]]; then
                     echo "# $add_task_word" >> $file_crontab_user
                     echo "$add_task_cron task $add_task_name" >> $file_crontab_user
-                    echo "【$add_task_word】 $add_task_name.js 任务添加成功"
-                    echo -n "【$add_task_word】 $add_task_name.js 任务添加成功\n" >> $file_upcron_notify
+                    echo "【$add_task_word】 任务添加成功 cron $add_task_cron"
+                    echo -n "【$add_task_word】 任务添加成功 cron $add_task_cron\n" >> $file_upcron_notify
                 else
-                    echo "【$add_task_word】 $add_task_name.js 任务已存在"
-                    echo -n "【$add_task_word】 $add_task_name.js 任务已存在\n" >> $file_upcron_notify
+                    echo "$add_task_name.js 任务已存在"
+                    echo -n "$add_task_name.js 任务已存在\n" >> $file_upcron_notify
                 fi
             fi
         fi
