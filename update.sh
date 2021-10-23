@@ -174,8 +174,8 @@ add_cron () {
             fi
 
             if [[ -z $add_task_cron || -z $add_task_word ]]; then
-                echo "【$add_task_word】 $add_task_name.js 任务添加失败"
-                echo -n "【$add_task_word】 $add_task_name.js 任务添加失败\n" >> $file_upcron_notify
+                echo "$add_task_name.js 任务添加失败"
+                echo -n "$add_task_name.js 任务添加失败\n" >> $file_upcron_notify
             else
                 task_name=$(grep -n "\<$add_task_name\>" $file_crontab_user)
                 if [[ -z $task_name ]]; then
