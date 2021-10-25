@@ -154,7 +154,8 @@ add_cron () {
                     echo "# $add_task_word" >> $file_crontab_user
                     echo "$add_task_cron task $add_task_name" >> $file_crontab_user
                     echo "【$add_task_word】 任务添加成功 cron $add_task_cron"
-                    echo -n "【$add_task_word】 任务添加成功 cron $add_task_cron\n" >> $file_upcron_notify
+                    add_cron_notify=$(echo $add_task_cron | s#*#\*#g)
+                    echo -n "【$add_task_word】 任务添加成功 cron $add_cron_notify\n" >> $file_upcron_notify
                 else
                     echo "$add_task_name.js 任务已存在"
                     echo -n "$add_task_name.js 任务已存在\n" >> $file_upcron_notify
