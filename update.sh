@@ -103,12 +103,12 @@ cp_joyreward_scripts () {
 
 ## 更新 own 所有 raw 文件
 update_own_raw () {
+    make_dir $dir_raw
     local rm_mark
-    [[ ${#OwnRawFile[*]} -gt 0 ]] && echo -e "---------------------------------\n"
+    [[ ${#OwnRawFile[*]} -gt 0 ]] && echo -e "--------------------------------------------------------------\n"
     for ((i=0; i<${#OwnRawFile[*]}; i++)); do
         raw_file_name[$i]=$(echo ${OwnRawFile[i]} | awk -F "/" '{print $NF}')
         echo -e "开始下载：${OwnRawFile[i]} \n\n保存路径：$dir_raw/${raw_file_name[$i]}\n"
-        make_dir $dir_raw
         wget -q --no-check-certificate -O "$dir_raw/${raw_file_name[$i]}.new" ${OwnRawFile[i]}
         if [[ $? -eq 0 ]]; then
             mv "$dir_raw/${raw_file_name[$i]}.new" "$dir_raw/${raw_file_name[$i]}"
@@ -117,9 +117,7 @@ update_own_raw () {
             echo -e "下载 ${raw_file_name[$i]} 失败，保留之前正常下载的版本...\n"
             [ -f "$dir_raw/${raw_file_name[$i]}.new" ] && rm -f "$dir_raw/${raw_file_name[$i]}.new"
         fi
-        if [[ ! -f $dir_scripts/raw_${raw_file_name[$i]} || $dir_raw/${raw_file_name[$i]} -nt $dir_scripts/raw_${raw_file_name[$i]} ]]; then
-            cp "$dir_raw/${raw_file_name[$i]}" "$dir_scripts/raw_${raw_file_name[$i]}"
-        fi
+        [ -f $dir_raw/${raw_file_name[$i]} ] && cp "$dir_raw/${raw_file_name[$i]}" "$dir_scripts/raw_${raw_file_name[$i]}"
     done
 
     for file in $(ls $dir_raw); do
