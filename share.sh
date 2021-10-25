@@ -1,10 +1,11 @@
 ## 目录
 dir_log=$dir_shell/log
 dir_scripts=$dir_shell/scripts
-dir_raw=$dir_shell/raw
+dir_own=$dir_shell/own
+dir_raw=$dir_own/raw
 dir_config=$dir_shell/config
 dir_sample=$dir_shell/sample
-dir_list_tmp=$dir_log/.tmp
+dir_list_tmp=$dir_shell/.tmp
 
 ## 文件
 file_config=$dir_config/config.sh
@@ -31,9 +32,9 @@ make_dir () {
 
 ## 创建/修复 软链接
 link_shell () {
-    for shell_name in $original_name; do
-        link_name=/usr/local/bin/${shell_name%%.*}
-        shell_name=$dir_shell/$shell_name
+    for (( i=0; i<${#original_name[*]}; i++ )); do
+        link_name=/usr/local/bin/${original_name[i]%%.*}
+        shell_name=$dir_shell/${original_name[i]}
         if [ ! -L $link_name ] || [[ $(readlink -f $link_name) != $shell_name ]]; then
             rm -f $link_name 2>/dev/null
             ln -sf $shell_name $link_name
@@ -43,9 +44,9 @@ link_shell () {
 
 ## 设置/修复 权限
 shell_chmod () {
-    for sh_name in $original_name; do
-        if [[ ! -x $dir_shell/$sh_name ]]; then
-            chmod +x $dir_shell/sh_name
+    for (( i=0; i<${#original_name[*]}; i++ )); do
+        if [[ ! -x $dir_shell/${original_name[i]} ]]; then
+            chmod +x $dir_shell/${original_name[i]}
         fi
     done
 }
