@@ -5,7 +5,7 @@ dir_own=$dir_shell/own
 dir_raw=$dir_own/raw
 dir_config=$dir_shell/config
 dir_sample=$dir_shell/sample
-dir_list_tmp=$dir_shell/.tmp
+dir_list_tmp=$dir_log/.tmp
 
 ## 文件
 file_config=$dir_config/config.sh
