@@ -173,11 +173,11 @@ del_cron () {
                 del_word_line=$((del_task_line-1))
                 del_task_word=$(sed -n "${del_word_line}p" $file_crontab_user | cut -d " " -f 2-)
                 sed -i "${del_word_line},${del_task_line}d" $file_crontab_user
-                echo "【$del_task_word】 $del_task_name.js 任务移除成功"
-                echo -n "【$del_task_word】 $del_task_name.js 任务移除成功\n" >> $file_upcron_notify
+                echo "【$del_task_word】 任务移除成功"
+                echo -n "【$del_task_word】 任务移除成功\n" >> $file_upcron_notify
             else
-                echo "脚本 $del_task_name.js 无定时任务.."
-                echo -n "脚本 $del_task_name.js 无定时任务..\n" >> $file_upcron_notify
+                echo "$del_task_name.js 无定时任务.."
+                echo -n "$del_task_name.js 无定时任务..\n" >> $file_upcron_notify
             fi      
         fi
     done
