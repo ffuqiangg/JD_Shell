@@ -32,7 +32,7 @@ make_dir () {
 
 ## 创建/修复 软链接
 link_shell () {
-    for (( i=0; i<${#original_name[*]}; i++ )); do
+    for ((i=0; i<${#original_name[*]}; i++)); do
         link_name=/usr/local/bin/${original_name[i]%%.*}
         shell_name=$dir_shell/${original_name[i]}
         if [ ! -L $link_name ] || [[ $(readlink -f $link_name) != $shell_name ]]; then
@@ -44,7 +44,7 @@ link_shell () {
 
 ## 设置/修复 权限
 shell_chmod () {
-    for (( i=0; i<${#original_name[*]}; i++ )); do
+    for ((i=0; i<${#original_name[*]}; i++)); do
         if [[ ! -x $dir_shell/${original_name[i]} ]]; then
             chmod +x $dir_shell/${original_name[i]}
         fi
