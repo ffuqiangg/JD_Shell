@@ -128,7 +128,7 @@ update_own_raw () {
                 break
             fi
         done
-        [[ $rm_mark == yes ]] && rm -f $dir_raw/$file 2>/dev/null && rm -f $dir_scripts/raw_$file 2>/dev/null
+        [[ $rm_mark == yes ]] && rm -f $dir_raw/$file 2>/dev/null ; rm -f $dir_scripts/raw_$file 2>/dev/null
     done
 }
 
