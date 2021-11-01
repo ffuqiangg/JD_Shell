@@ -1,8 +1,7 @@
 ## 目录
 dir_log=$dir_shell/log
 dir_scripts=$dir_shell/scripts
-dir_own=$dir_shell/own
-dir_raw=$dir_own/raw
+dir_raw=$dir_shell/raw
 dir_config=$dir_shell/config
 dir_sample=$dir_shell/sample
 dir_list_tmp=$dir_shell/.tmp
