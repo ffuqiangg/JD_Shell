@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+ 
 
 ## 文件路径、脚本网址
 dir_shell=$(dirname $(readlink -f "$0"))
@@ -101,9 +101,8 @@ cp_joyreward_scripts () {
     fi
 }
 
-## 更新 own 所有 raw 文件
+## 更新所有 raw 文件
 update_own_raw () {
-    make_dir $dir_raw
     local rm_mark
     [[ ${#OwnRawFile[*]} -gt 0 ]] && echo -e "--------------------------------------------------------------\n"
     for ((i=0; i<${#OwnRawFile[*]}; i++)); do
@@ -178,7 +177,7 @@ del_cron () {
             else
                 echo "$del_task_name.js 无定时任务.."
                 echo -n "$del_task_name.js 无定时任务..\n" >> $file_upcron_notify
-            fi      
+            fi
         fi
     done
 }
