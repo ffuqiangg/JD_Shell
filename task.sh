@@ -7,17 +7,6 @@ dir_shell=$(dirname $(readlink -f "$0"))
 . $dir_shell/share.sh
 . $file_config
 
-## 记录时间
-write_header () {
-    echo "
----------------------------------
-
-系统时间：$(date "+%Y-%m-%d %H:%M:%S")
-
-一周京豆收支
-"
-}
-
 ## 使用说明
 usage () {
     echo "task 命令使用说明："
