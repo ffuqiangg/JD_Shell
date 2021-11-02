@@ -36,8 +36,7 @@ run_normal () {
         make_dir $dir_log/$task_name
         node $dir_scripts/$task_name.js 2>&1 | tee $dir_log/$task_name/$(date +%Y-%m-%d-%H-%M-%S).log
     else
-        echo "$dir_scripts/$task_name.js 脚本不存在，请检查脚本文件"
-        send_notify "脚本运行错误" "$dir_scripts/$task_name.js 脚本不存在，请检查脚本文件"
+        echo "脚本文件 $dir_scripts/$task_name.js 不存在"
     fi
 }
 
