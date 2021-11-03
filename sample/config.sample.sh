@@ -20,7 +20,6 @@ OwnRawFile=(
 # ============= 长期活动变量 =============
 ## 宠汪汪积分兑换
 export JD_JOY_REWARD_NAME='500'
-export JD_JOY_REWARD_NAME2='20'
 ## 东东超市蓝币兑换
 export MARKET_COIN_TO_BEANS='超值'
 ## 摇钱树卖出金币
