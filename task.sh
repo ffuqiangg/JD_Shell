@@ -10,7 +10,7 @@ dir_shell=$(dirname $(readlink -f "$0"))
 ## 使用说明
 usage () {
     echo "task 命令使用说明："
-    echo "task <js_name>       # 运行脚本，如设置了延迟且不在0-2、29-31、59分内，将随机延迟一定秒数"
+    echo "task <js_name>       # 运行脚本，如设置了延迟且不在0-2、29-31、58分内，将随机延迟一定秒数"
     echo "task <js_name> now   # 立即运行脚本"
     echo "task week            # 一周京豆收支统计"
 }
@@ -21,7 +21,7 @@ random_delay () {
     local random_delay_min=$RandomMin
     if [[ $random_delay_max ]] && [[ $random_delay_max -gt 0 ]]; then
         local current_min=$(date "+%-M")
-        if [[ $current_min -gt 2 && $current_min -lt 29 ]] || [[ $current_min -gt 31 && $current_min -lt 59 ]]; then
+        if [[ $current_min -gt 2 && $current_min -lt 29 ]] || [[ $current_min -gt 31 && $current_min -lt 58 ]]; then
             delay_second=$(make_random $random_delay_max $random_delay_min)
             echo -e "\n命令未添加 \"now\"，随机延迟 $delay_second 秒后再执行任务，如需立即终止，请按 CTRL+C...\n"
             sleep $delay_second
