@@ -12,7 +12,6 @@ usage () {
     echo "task 命令使用说明："
     echo "task <js_name>       # 运行脚本，如设置了延迟且不在0-2、29-31、58分内，将随机延迟一定秒数"
     echo "task <js_name> now   # 立即运行脚本"
-    echo "task week            # 一周京豆收支统计"
 }
 
 ## 随机延迟执行函数
