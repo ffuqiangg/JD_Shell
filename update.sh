@@ -93,14 +93,6 @@ update_scripts () {
     fi
 }
 
-## 复制宠汪汪兑换脚本并修改变量
-cp_joyreward_scripts () {
-    if [[ ! -f $dir_scripts/jd_joy_reward2.js || $dir_scripts/jd_joy_reward.js -nt $dir_scripts/jd_joy_reward2.js ]];then
-        cp $dir_scripts/jd_joy_reward.js $dir_scripts/jd_joy_reward2.js
-        sed -i 's/JD_JOY_REWARD_NAME/JD_JOY_REWARD_NAME2/g' $dir_scripts/jd_joy_reward2.js
-    fi
-}
-
 ## 更新所有 raw 文件
 update_own_raw () {
     local rm_mark
@@ -212,7 +204,6 @@ main () {
                 scripts)
                     record_time
                     update_scripts
-                    cp_joyreward_scripts
                     ;;
                 cron)
                     update_crontab
@@ -229,7 +220,6 @@ main () {
             record_time
             update_scripts
             npm_install
-            cp_joyreward_scripts
             update_own_raw
             update_cron
             send_cron_notify
