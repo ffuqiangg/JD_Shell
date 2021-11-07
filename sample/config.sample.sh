@@ -15,7 +15,7 @@ RandomMin=''
 
 ## 独立js脚本文件
 OwnRawFile=(
-	#https://raw.githubusercontent.com/Ariszy/Private-Script/master/JD/zy_xyzzh.js
+  #https://raw.githubusercontent.com/Ariszy/Private-Script/master/JD/zy_xyzzh.js
 )
 
 # ============= 长期活动变量 =============
