@@ -65,8 +65,10 @@
 15 0-23/1 * * * task jd_joy_feedPets
 # 宠汪汪每日助力
 30 23 * * * task jd_joy_park_help
-# 宠汪汪积分兑换有就换版
-58 7,15,23 * * * task jd_joy_reward_Mod
+# 宠汪汪积分兑换
+59 7,15,23 * * * task jd_joy_reward
+# 宠汪汪积分兑换20
+1 16 * * * task jd_joy_reward
 # 宠汪汪赛跑助力
 15 10 * * * task jd_joy_run
 # 宠汪汪偷积分狗粮
