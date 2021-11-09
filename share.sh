@@ -67,7 +67,7 @@ make_random () {
     local random_max=$1
     local random_min=$2
     local random_min=${random_min:=1}
-    local divi=$(($random_max - $random_min +1))
+    local divi=$(($random_max - $random_min + 1))
     random_num=$((RANDOM % $divi + $random_min))
     echo $random_num
 }
