@@ -161,7 +161,7 @@ del_cron () {
             del_task_name=${del_task_name%%.*}
             del_task_line=$(cat $file_crontab_user | grep -n "\<$del_task_name\>" | cut -d ":" -f 1)
             if [[ -n $del_task_line ]]; then
-                del_word_line=$((del_task_line-1))
+                del_word_line=$(($del_task_line - 1))
                 del_task_word=$(sed -n "${del_word_line}p" $file_crontab_user | cut -d " " -f 2-)
                 sed -i "${del_word_line},${del_task_line}d" $file_crontab_user
                 echo "【$del_task_word】 任务移除成功"
