@@ -161,11 +161,23 @@ del_cron () {
             del_task_name=${del_task_name%%.*}
             del_task_line=$(cat $file_crontab_user | grep -n "\<$del_task_name\>" | cut -d ":" -f 1)
             if [[ -n $del_task_line ]]; then
-                del_word_line=$((del_task_line-1))
-                del_task_word=$(sed -n "${del_word_line}p" $file_crontab_user | cut -d " " -f 2-)
-                sed -i "${del_word_line},${del_task_line}d" $file_crontab_user
-                echo "【$del_task_word】 任务移除成功"
-                echo -n "【$del_task_word】 任务移除成功\n" >> $file_upcron_notify
+                del_task_line_nospace=$(echo $del_task_line | sed 's/ //g')
+                if [[ $del_task_line_nospace != $del_task_line ]]; then
+                    del_task_line_plural=($(echo $del_task_line))
+                    for ((i=0; i<${#del_task_line_plural[*]}; i++)); do
+                        del_word_line_plural=$((${del_task_line_plural[i]}-1))
+                        del_task_word_plural=$(sed -n "${del_word_line_plural}p" $file_crontab_user | cut -d " " -f 2-)
+                        sed -i "${del_word_line_plural},${del_task_line_plural[i]}d" $file_crontab_user
+                        echo "【$del_task_word_plural】 任务移除成功"
+                        echo -n "【$del_task_word_plural】 任务移除成功\n" >> $file_upcron_notify
+                    done
+                else
+                    del_word_line=$((del_task_line-1))
+                    del_task_word=$(sed -n "${del_word_line}p" $file_crontab_user | cut -d " " -f 2-)
+                    sed -i "${del_word_line},${del_task_line}d" $file_crontab_user
+                    echo "【$del_task_word】 任务移除成功"
+                    echo -n "【$del_task_word】 任务移除成功\n" >> $file_upcron_notify
+                fi
             else
                 echo "$del_task_name.js 无定时任务.."
                 echo -n "$del_task_name.js 无定时任务..\n" >> $file_upcron_notify
