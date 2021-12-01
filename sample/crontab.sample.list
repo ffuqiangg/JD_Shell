@@ -6,8 +6,6 @@
 
 # 京东资产变动通知强化版
 30 9 * * * task jd_bean_change
-# 上月京豆收支
-15 18 1 * * task jd_bean_change
 
 # 京东多合一签到
 0 0 * * * task jd_bean_sign
