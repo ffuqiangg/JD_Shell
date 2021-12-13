@@ -8,10 +8,8 @@ export TG_USER_ID=''
 ## 保留脚本运行日志天数
 RmLogDaysAgo='7'
 
-## 随机延迟最大最小值，单位：秒，最小值默认1
-## 最大值留空或为0则任务准时运行无延迟
+## 随机延迟最大值 留空或为0则任务准时运行无延迟
 RandomMax='300'
-RandomMin=''
 
 ## 独立js脚本文件
 OwnRawFile=(
