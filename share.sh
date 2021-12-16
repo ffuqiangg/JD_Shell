@@ -65,7 +65,10 @@ update_crontab () {
 ## 生成随机数 $1：最大值
 make_random () {
     local random_max=$1
-    random_num=$((RANDOM % $random_max + 1))
+    local random_min=$2
+    local random_min=${random_min:=1}
+    rem_num=$(($random_max - $random_min + 1))
+    random_num=$((RANDOM % $rem_num + $random_min))
     echo $random_num
 }
 
