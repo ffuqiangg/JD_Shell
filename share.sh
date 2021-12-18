@@ -62,7 +62,7 @@ update_crontab () {
     fi
 }
 
-## 生成随机数 $1：最大值
+## 生成随机数 $1：最大值，$2：最小值(默认1)
 make_random () {
     local random_max=$1
     local random_min=$2
