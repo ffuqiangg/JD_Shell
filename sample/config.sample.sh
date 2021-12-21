@@ -1,7 +1,7 @@
 ## jd cookie
 export JD_COOKIE=''
 
-## TG_bot 通知参数，其他渠道通知变量参数参照仓库 ENV.md 文件
+## TG_bot 通知参数，其他渠道通知变量参数参照 https://github.com/ffuqiangg/JD_Shell/blob/main/ENV.md
 export TG_BOT_TOKEN=''
 export TG_USER_ID=''
 
