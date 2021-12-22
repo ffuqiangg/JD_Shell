@@ -1,18 +1,13 @@
 #!/usr/bin/env bash
 
-## 文件路径、脚本网址
 dir_shell=$(dirname $(readlink -f "$0"))
 url_scripts='https://github.com/shufflewzc/faker2.git'
-
-## 导入变量函数，配置文件
 . $dir_shell/share.sh
 . $file_config
 
-## 创建软链接
 link_shell
 shell_chmod
 
-## 在日志中记录时间与路径
 record_time () {
     echo "
 --------------------------------------------------------------
@@ -27,7 +22,6 @@ raw脚本目录：$dir_raw
 "
 }
 
-## 使用帮助
 usage () {
     echo "使用帮助："
     echo "update         # 更新所有脚本，添加定时任务"
@@ -36,7 +30,6 @@ usage () {
     echo "update npm     # 按package.json更新依赖"
 }
 
-## npm install
 npm_install () {
     local dir_current=$(pwd)
     [ -s $dir_sample/package.json ] && package_old=$(cat $dir_sample/package.json)
@@ -52,34 +45,29 @@ npm_install () {
     fi  
 }
 
-## 克隆脚本，$1：仓库地址，$2：仓库保存路径，$3：分支（可省略）
 git_clone_scripts () {
-    local url=$1
-    local dir=$2
-    local branch=$3
+    local url=$1      #仓库地址
+    local dir=$2      #保存路径
+    local branch=$3   #分支(可选)
     [[ $branch ]] && cmd="-b $branch "
     git clone $cmd $url $dir
 }
 
-## 更新脚本，$1：仓库保存路径
 git_pull_scripts () {
-    local dir_work=$1
+    local dir_work=$1   #保存路径
     local dir_current=$(pwd)
     cd $dir_work
     git reset --hard && git pull
     cd $dir_current
 }
 
-## 更新scripts
 update_scripts () {
-    # 首次运行使用sample目录文件，之后运行于脚本更新前生成
     if [[ -f $dir_sample/scripts.list.old ]]; then
         mv $dir_sample/scripts.list.old $scripts_list_old
     else
         create_list "$dir_scripts" js "$scripts_list_old"
     fi
 
-    # 更新或克隆脚本
     if [ -d $dir_scripts/.git ];then
         git_pull_scripts ${dir_scripts}
     else
@@ -93,7 +81,6 @@ update_scripts () {
     fi
 }
 
-## 更新所有 raw 文件
 update_own_raw () {
     local rm_mark
     [[ ${#OwnRawFile[*]} -gt 0 ]] && echo -e "--------------------------------------------------------------\n"
@@ -123,13 +110,11 @@ update_own_raw () {
     done
 }
 
-## 输出日志及通知文件
 notify_log () {
     echo "$1"
     echo -n "$1\n" >> $2
 }
 
-## 新增定时任务
 add_cron () {
     for add_cron_list in $(diff $scripts_list_old $scripts_list_new | grep ">" | sed 's/> //g'); do
         if [[ -n $add_cron_list ]]; then
@@ -156,7 +141,6 @@ add_cron () {
     done
 }
 
-## 删除失效任务
 del_cron () {
     for del_cron_list in $(diff $scripts_list_old $scripts_list_new | grep "<" | sed 's/< //g'); do
         if [[ -n $del_cron_list ]]; then
@@ -186,14 +170,12 @@ del_cron () {
     done
 }
 
-## 修改定时任务
 update_cron () {
     create_list "$dir_scripts" js "$scripts_list_new"
     del_cron
     add_cron
 }
 
-## 更新定时任务通知
 send_cron_notify () {
     if [[ -f $file_upcron_notify ]]; then
         send_notify "更新定时任务" "$(cat $file_upcron_notify)"
@@ -201,7 +183,6 @@ send_cron_notify () {
     fi
 }
 
-## 修复crontab
 fix_crontab () {
     if [[ $JD_DIR ]]; then
         perl -i -pe "s|( ?&>/dev/null)+||g" $file_crontab_user
