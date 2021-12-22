@@ -1,20 +1,15 @@
 #!/usr/bin/env bash
 
-## 路径
 dir_shell=$(dirname $(readlink -f "$0"))
-
-## 导入配置文件，通用函数变量
 . $dir_shell/share.sh
 . $file_config
 
-## 使用说明
 usage () {
     echo "task 命令使用说明："
     echo "task <js_name>       # 运行脚本，如设置了延迟且不在0-2、29-31、58分内，将随机延迟一定秒数"
     echo "task <js_name> now   # 立即运行脚本"
 }
 
-## 随机延迟执行函数
 random_delay () {
     if [[ $RandomMax ]] && [[ $RandomMax -gt 0 ]]; then
         local current_min=$(date "+%-M")
@@ -26,7 +21,6 @@ random_delay () {
     fi
 }
 
-## 正常运行脚本
 run_normal () {
     local task_name=$1
     if [[ -f $dir_scripts/$task_name.js ]]; then
@@ -37,7 +31,6 @@ run_normal () {
     fi
 }
 
-## 多合一签到脚本函数
 run_bean_sign () {
     local dir_current=$(pwd)
     local task_name=$1
