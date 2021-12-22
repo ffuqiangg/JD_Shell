@@ -1,9 +1,13 @@
 #!/usr/bin/env bash
 
+## 路径
 dir_shell=$(dirname $(readlink -f "$0"))
+
+# 导入变量函数
 . $dir_shell/share.sh
 . $file_config
 
+## 删除运行js脚本的旧日志
 remove_js_log () {
     local log_full_path_list=$(ls -l $dir_log/*/*.log | grep -v "bot" | awk '{print $9}')
     local diff_time
@@ -14,6 +18,7 @@ remove_js_log () {
     done
 }
 
+## 删除空文件夹
 remove_empty_dir () {
     cd $dir_log
     for dir in $(ls); do
@@ -23,6 +28,7 @@ remove_empty_dir () {
     done
 }
 
+## 运行
 if [[ ${RmLogDaysAgo} ]]; then
     echo -e "查找旧日志文件中...\n"
     remove_js_log
