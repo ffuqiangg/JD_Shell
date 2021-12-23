@@ -139,7 +139,7 @@ add_cron () {
             if [[ -z $add_task_word ]]; then
                 add_task_word=$(sed -n '/^const \$/p' $add_cron_list | awk -F "'" '{print $2}')
             fi
-            add_task_cron=$(cat $add_cron_list | head -20 | grep -oE '[0-9]*[0-9,-/]{1,}\ [0-9*,-/]{1,}\ [0-9*,-?/LWC]{1,}\ [0-9*,-/]{1,}\ [0-9*,-?/LC#]{1,}' | head -n 1)
+            add_task_cron=$(cat $add_cron_list | head -20 | grep -oE '[0-9*]*[0-9,-/]{1,}\ [0-9*,-/]{1,}\ [0-9*,-?/LWC]{1,}\ [0-9*,-/]{1,}\ [0-9*,-?/LC#]{1,}' | head -n 1)
             if [[ -z $add_task_cron || -z $add_task_word ]]; then
                 notify_log "[ 任务添加失败 ] $add_task_name.js" $file_upcron_notify
             else
