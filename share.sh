@@ -29,6 +29,7 @@ make_dir () {
 
 ## 创建/修复 软链接
 link_shell () {
+    local link_name shell_name
     for ((i=0; i<${#original_name[*]}; i++)); do
         link_name=/usr/local/bin/${original_name[i]%%.*}
         shell_name=$dir_shell/${original_name[i]}
@@ -50,8 +51,8 @@ shell_chmod () {
 
 ## 发送通知 $1：标题，$2：正文
 send_notify () {
-    title=$(echo $1 | sed 's/-/_/g')
-    msg=$(echo -e $2)
+    local title=$(echo $1 | sed 's/-/_/g')
+    local msg=$(echo -e $2)
     node $dir_shell/notify.js "$title" "$msg"
 }
 
