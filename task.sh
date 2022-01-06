@@ -16,7 +16,7 @@ usage () {
 
 ## 随机延迟执行函数
 random_delay () {
-		local delay_second
+    local delay_second
     if [[ $RandomMax ]] && [[ $RandomMax -gt 0 ]]; then
         local current_min=$(date "+%-M")
         if [[ $current_min -gt 2 && $current_min -lt 29 ]] || [[ $current_min -gt 31 && $current_min -lt 58 ]]; then
