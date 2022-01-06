@@ -39,6 +39,7 @@ usage () {
 ## npm install
 npm_install () {
     local dir_current=$(pwd)
+    local package_old package_new
     [ -s $dir_sample/package.json ] && package_old=$(cat $dir_sample/package.json)
     wget -q --no-check-certificate -O $dir_sample/package.json https://raw.githubusercontent.com/ffuqiangg/JD_Shell/main/sample/package.json
     if [[ $? -eq 0 ]]; then
@@ -95,7 +96,7 @@ update_scripts () {
 
 ## 更新所有 raw 文件
 update_own_raw () {
-    local rm_mark
+    local rm_mark raw_file_name
     [[ ${#OwnRawFile[*]} -gt 0 ]] && echo -e "--------------------------------------------------------------\n"
     for ((i=0; i<${#OwnRawFile[*]}; i++)); do
         raw_file_name[$i]=$(echo ${OwnRawFile[i]} | awk -F "/" '{print $NF}')
@@ -131,6 +132,7 @@ notify_log () {
 
 ## 新增定时任务
 add_cron () {
+    local add_task_name add_task_word script_note_line add_task_cron task_name
     for add_cron_list in $(diff $scripts_list_old $scripts_list_new | grep ">" | sed 's/> //g'); do
         if [[ -n $add_cron_list ]]; then
             add_task_name=$(echo $add_cron_list | awk -F "/" '{print $NF}')
@@ -163,6 +165,7 @@ add_cron () {
 
 ## 删除失效任务
 del_cron () {
+    local del_task_name del_task_line del_task_line_nospace del_task_line_plural del_word_line_plural del_task_word_plural del_word_line del_task_word
     for del_cron_list in $(diff $scripts_list_old $scripts_list_new | grep "<" | sed 's/< //g'); do
         if [[ -n $del_cron_list ]]; then
             del_task_name=$(echo $del_cron_list | awk -F "/" '{print $NF}')
