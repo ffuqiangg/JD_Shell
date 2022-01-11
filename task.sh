@@ -57,10 +57,12 @@ main () {
             case $1 in
                 jd_bean_sign)
                     run_bean_sign $1
+                    exit 0
                     ;;
                 *)
                     random_delay
                     run_normal $1
+                    exit 0
                     ;;
             esac
             ;;
@@ -68,16 +70,19 @@ main () {
             case $2 in
                 now)
                     run_normal $1
+                    exit 0
                     ;;
                 *)
                     echo -e "\n命令输入错误...\n"
                     usage
+                    exit 0
                     ;;
             esac
             ;;
         *)
             echo -e "\n命令过多...\n"
             usage
+            exit 0
             ;;
     esac
 }
