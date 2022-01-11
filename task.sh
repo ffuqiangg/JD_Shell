@@ -52,6 +52,7 @@ main () {
     case $# in
         0)
             usage
+            exit 0
             ;;
         1)
             case $1 in
