@@ -2,7 +2,7 @@
 
 ## 文件路径、脚本网址
 dir_shell=$(dirname $(readlink -f "$0"))
-url_scripts='https://github.com/shufflewzc/faker2.git'
+url_scripts='https://github.com/zero205/JD_tencent_scf.git'
 
 ## 导入变量函数，配置文件
 . $dir_shell/share.sh
@@ -82,9 +82,9 @@ update_scripts () {
 
     # 更新或克隆脚本
     if [ -d $dir_scripts/.git ];then
-        git_pull_scripts ${dir_scripts}
+        git_pull_scripts $dir_scripts
     else
-        git_clone_scripts $url_scripts ${dir_scripts}
+        git_clone_scripts $url_scripts $dir_scripts main
     fi
 
     if [[ $exit_status -eq 0 ]]; then
