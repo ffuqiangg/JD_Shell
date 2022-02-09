@@ -2,7 +2,6 @@
 
 ## 文件路径、脚本网址
 dir_shell=$(dirname $(readlink -f "$0"))
-url_scripts='https://github.com/zero205/JD_tencent_scf.git'
 
 ## 导入变量函数，配置文件
 . $dir_shell/share.sh
@@ -58,7 +57,7 @@ git_clone_scripts () {
     local url=$1
     local dir=$2
     local branch=$3
-    [[ $branch ]] && cmd="-b $branch "
+    [[ -n $branch ]] && cmd="-b $branch "
     git clone $cmd $url $dir
 }
 
@@ -84,7 +83,7 @@ update_scripts () {
     if [ -d $dir_scripts/.git ];then
         git_pull_scripts $dir_scripts
     else
-        git_clone_scripts $url_scripts $dir_scripts main
+        git_clone_scripts $url_scripts $dir_scripts $branch_scripts
     fi
 
     if [[ $exit_status -eq 0 ]]; then
