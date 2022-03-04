@@ -18,16 +18,12 @@
 /jd/scripts/jd_DrawEntrance.js
 /jd/scripts/jd_MovementFaker.js
 /jd/scripts/jd_aid_factory.js
-/jd/scripts/jd_all_bean_change.js
 /jd/scripts/jd_angryKoi.js
-/jd/scripts/jd_bean_change.js
-/jd/scripts/jd_bean_change_new.js
 /jd/scripts/jd_bean_home.js
 /jd/scripts/jd_bean_sign.js
 /jd/scripts/jd_beauty.js
 /jd/scripts/jd_blueCoin.js
 /jd/scripts/jd_bookshop.js
-/jd/scripts/jd_car_exchange.js
 /jd/scripts/jd_cash.js
 /jd/scripts/jd_ccSign.js
 /jd/scripts/jd_club_lottery.js
@@ -36,9 +32,6 @@
 /jd/scripts/jd_ddnc_farmpark.js
 /jd/scripts/jd_delCoupon.js
 /jd/scripts/jd_dogsEmploy.js
-/jd/scripts/jd_dpqd_diy.js
-/jd/scripts/jd_dreamFactory.js
-/jd/scripts/jd_dreamFactory_tuan.js
 /jd/scripts/jd_dwapp.js
 /jd/scripts/jd_earn30.js
 /jd/scripts/jd_fruit.js
