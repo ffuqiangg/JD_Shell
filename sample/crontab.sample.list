@@ -4,9 +4,6 @@
 ## 删除旧日志
 19 22 * * * rmlog 
 
-# 京东资产变动通知强化版
-30 9 * * * task jd_bean_change
-
 # 京东多合一签到
 0 0 * * * task jd_bean_sign
 # 京东签到图形验证
@@ -15,8 +12,6 @@
 15 6 * * * task jd_DrawEntrance
 # 东东农场
 5 6-18/6 * * * task jd_fruit
-# 京东汽车兑换
-59 23 * * * task jd_car_exchange
 # 签到领现金
 2 0-23/4 * * * task jd_cash
 # 京喜农场
@@ -35,14 +30,8 @@
 13 1,22,23 * * * task jd_daily_lottery
 # 东东乐园
 30 7 * * * task jd_ddnc_farmpark
-# 热血心跳
-5 6,8 12-24 8 * task jd_decompression
 # 口袋书店
 1 8,12,18 * * * task jd_bookshop
-# 店铺签到diy
-30 0,23 * * * task jd_dpqd_diy
-# 京喜工厂
-10 * * * * task jd_dreamFactory
 # 积分换话费
 33 7,19 * * * task jd_dwapp
 # 东东健康社区
@@ -58,17 +47,17 @@
 # 领金贴
 43 8 * * * task jd_jin_tie_xh
 # 宠汪汪
-15 0-23/2 * * * task jd_joy
+#15 0-23/2 * * * task jd_joy
 # 宠汪汪喂食
-15 0-23/1 * * * task jd_joy_feedPets
+#15 0-23/1 * * * task jd_joy_feedPets
 # 宠汪汪每日助力
-30 23 * * * task jd_joy_park_help
+#30 23 * * * task jd_joy_park_help
 # 宠汪汪积分有就换
-58 7,15,23 * * * jd_joy_reward_Mod
+#58 7,15,23 * * * jd_joy_reward_Mod
 # 宠汪汪赛跑助力
-15 10 * * * task jd_joy_run
+#15 10 * * * task jd_joy_run
 # 宠汪汪偷积分狗粮
-10 0-21/3 * * * task jd_joy_steal
+#10 0-21/3 * * * task jd_joy_steal
 # 汪汪乐园每日任务
 0 0,7,9,17,20 * * * task jd_joy_park_task
 # 京喜签到
@@ -116,15 +105,15 @@
 # 众筹许愿池
 40 0,2 * * * task jd_wish
 # 京东到家鲜豆任务
-10 0 * * * task jddj_bean
+#10 0 * * * task jddj_bean
 # 京东到家果园任务
-10 0,3,8,11,17 * * * task jddj_fruit
+#10 0,3,8,11,17 * * * task jddj_fruit
 # 京东到家果园收水滴
-5 * * * * task jddj_fruit_collectWater
+#5 * * * * task jddj_fruit_collectWater
 # 京东到家鲜豆庄园收水滴
-7 * * * * task jddj_getPoints
+#7 * * * * task jddj_getPoints
 # 京东到家鲜豆庄园
-10 * * * * task jddj_plantBeans
+#10 * * * * task jddj_plantBeans
 # 领劵中心签到
 15 0 * * * task jd_ccSign
 # 京东小魔方
