@@ -4,6 +4,9 @@
 ## 删除旧日志
 19 22 * * * rmlog 
 
+## 东东农场自动加场
+36 21 * * * /jd/jd_fruit_water.sh
+
 # 京东多合一签到
 0 0 * * * task jd_bean_sign
 # 京东签到图形验证
