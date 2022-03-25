@@ -140,7 +140,7 @@ add_cron () {
             [ -z $add_task_word ] && add_task_word=$(sed -n '/^const \$/p' $add_cron_list | awk -F "'" '{print $2}')
             script_note_line=$(cat $add_cron_list | grep -n 'const\ \$' | head -n 1 | cut -d ":" -f 1)
             if [[ -n $script_note_line ]]; then
-                add_task_cron=$(cat $add_cron_list | head -$script_note_line | grep -oE '[0-9*]*[0-9,-/]{1,}\ [0-9*,-/]{1,}\ [0-9*,-?/LWC]{1,}\ [0-9*,-/]{1,}\ [0-9*,-?/LC#]{1,}' | head -n 1)
+                add_task_cron=$(cat $add_cron_list | head -$script_note_line | grep -oE '[0-9*]+[0-9,-/]*\ [0-9*,-/]+\ [0-9*,-?/LWC]+\ [0-9*,-/]+\ [0-9*,-?/LC#]+' | head -n 1)
             else
                 add_task_cron=''
             fi
