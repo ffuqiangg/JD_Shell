@@ -72,20 +72,12 @@ git_pull_scripts () {
 
 ## 更新scripts
 update_scripts () {
-    # 首次运行使用sample目录文件，之后运行于脚本更新前生成
-    if [[ -f $dir_sample/scripts.list.old ]]; then
-        mv $dir_sample/scripts.list.old $scripts_list_old
-    else
-        create_list "$dir_scripts" js "$scripts_list_old"
-    fi
-
-    # 更新或克隆脚本
+    create_list "$dir_scripts" js "$scripts_list_old"
     if [ -d $dir_scripts/.git ];then
         git_pull_scripts $dir_scripts
     else
         git_clone_scripts $url_scripts $dir_scripts $branch_scripts
     fi
-
     if [[ $exit_status -eq 0 ]]; then
         echo -e "\n更新$dir_scripts成功...\n"
     else
@@ -132,7 +124,7 @@ notify_log () {
 ## 新增定时任务
 add_cron () {
     local add_task_name add_task_word script_note_line add_task_cron task_name
-    for add_cron_list in $(diff $scripts_list_old $scripts_list_new | grep ">" | sed 's/> //g'); do
+    for add_cron_list in $(diff $scripts_list_old $scripts_list_new | grep ">" | sed 's/> //g' | grepv_scripts $no_cron_list); do
         if [[ -n $add_cron_list ]]; then
             add_task_name=$(echo $add_cron_list | awk -F "/" '{print $NF}')
             add_task_name=${add_task_name%%.*}
@@ -167,7 +159,7 @@ del_cron () {
         if [[ -n $del_cron_list ]]; then
             del_task_name=$(echo $del_cron_list | awk -F "/" '{print $NF}')
             del_task_name=${del_task_name%%.*}
-            del_task_line=$(cat $file_crontab_user | grep -n "\<$del_task_name\>" | cut -d ":" -f 1)
+            del_task_line=$(cat $file_crontab_user | grep -nE "<$del_task_name>" | cut -d ":" -f 1)
             if [[ -n $del_task_line ]]; then
                 del_task_line_nospace=$(echo $del_task_line | sed 's/ //g')
                 if [[ $del_task_line_nospace != $del_task_line ]]; then
