@@ -121,10 +121,18 @@ notify_log () {
     echo -n "$1\n" >> $2
 }
 
+## 新增定时任务子函数，排除脚本。变量 no_cron_list 在 config.sh 中设置
+grepv_scripts () {
+    for ((i=0; i<${#no_cron_list[*]}; i++)); do
+        grep_scripts_name=${no_cron_list[i]}.js
+        grep -vE "<$grep_scripts_name>"
+    done
+}
+
 ## 新增定时任务
 add_cron () {
     local add_task_name add_task_word script_note_line add_task_cron task_name
-    for add_cron_list in $(diff $scripts_list_old $scripts_list_new | grep ">" | sed 's/> //g' | grepv_scripts $no_cron_list); do
+    for add_cron_list in $(diff $scripts_list_old $scripts_list_new | grep ">" | sed 's/> //g' | grepv_scripts); do
         if [[ -n $add_cron_list ]]; then
             add_task_name=$(echo $add_cron_list | awk -F "/" '{print $NF}')
             add_task_name=${add_task_name%%.*}
