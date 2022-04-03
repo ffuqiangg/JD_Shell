@@ -3,4 +3,5 @@
 
 ## 删除旧日志
 19 22 * * * rmlog 
-
+## 多合一签到
+0 0 * * * task jd_bean_sign
