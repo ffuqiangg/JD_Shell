@@ -80,12 +80,3 @@ create_list () {
     local filelist=$3
     ls $dir/*.$filetype > $filelist
 }
-
-## 排除脚本文件
-grepv_scripts () {
-    local vscripts=$1
-    for ((i=0; i<${#vscripts[*]}; i++)); do
-        grep_scripts_name=${vscripts[i]}.js
-        grep -vE "<$grep_scripts_name>"
-    done
-}
