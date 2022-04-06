@@ -121,18 +121,10 @@ notify_log () {
     echo -n "$1\n" >> $2
 }
 
-## 新增定时任务子函数，排除脚本。变量 no_cron_list 在 config.sh 中设置
-grepv_scripts () {
-    for ((i=0; i<${#no_cron_list[*]}; i++)); do
-        grep_scripts_name=${no_cron_list[i]}.js
-        grep -vE "<$grep_scripts_name>"
-    done
-}
-
 ## 新增定时任务
 add_cron () {
-    local add_task_name add_task_word script_note_line add_task_cron task_name
-    for add_cron_list in $(diff $scripts_list_old $scripts_list_new | grep ">" | sed 's/> //g' | grepv_scripts); do
+    local add_task_name add_task_word script_note_line add_task_cron task_name 
+    for add_cron_list in $(diff $scripts_list_old $scripts_list_new | grep ">" | sed 's/> //g'); do
         if [[ -n $add_cron_list ]]; then
             add_task_name=$(echo $add_cron_list | awk -F "/" '{print $NF}')
             add_task_name=${add_task_name%%.*}
@@ -145,15 +137,21 @@ add_cron () {
                 add_task_cron=''
             fi
             if [[ -z $add_task_cron || -z $add_task_word ]]; then
-                notify_log "[ 添加失败 ] $add_task_name.js" $file_upcron_notify
+                notify_log "【添加失败】 $add_task_name.js ⚠️无默认定时" $file_upcron_notify
             else
-                task_name=$(grep -n "\<$add_task_name\>" $file_crontab_user)
+                task_name=$(grep -nE "<$add_task_name>" $file_crontab_user)
                 if [[ -z $task_name ]]; then
                     echo "# $add_task_word" >> $file_crontab_user
-                    echo "$add_task_cron task $add_task_name" >> $file_crontab_user
-                    notify_log "[ 添加成功 ] $add_task_word" $file_upcron_notify
+                    grepv_script=$(echo $no_cron_list | grep -nE "<$add_task_name>")
+                    if [[ -z $grepv_script ]]; then
+                        echo "$add_task_cron task $add_task_name" >> $file_crontab_user
+                        notify_log "【添加成功】 $add_task_word ✅" $file_upcron_notify
+                    else
+                        echo "#$add_task_cron task $add_task_name" >> $file_crontab_user
+                        notify_log "【添加失败】 $add_task_word ⚠️脚本被排除" $file_upcron_notify
+                    fi
                 else
-                    notify_log "[ 任务存在 ] $add_task_name.js" $file_upcron_notify
+                    notify_log "【添加失败】 $add_task_name.js ⚠️定时任务已存在" $file_upcron_notify
                 fi
             fi
         fi
@@ -176,16 +174,16 @@ del_cron () {
                         del_word_line_plural=$((${del_task_line_plural[i]}-1))
                         del_task_word_plural=$(sed -n "${del_word_line_plural}p" $file_crontab_user | cut -d " " -f 2-)
                         sed -i "${del_word_line_plural},${del_task_line_plural[i]}d" $file_crontab_user
-                        notify_log "[ 移除成功 ] $del_task_word_plural" $file_upcron_notify
+                        notify_log "【移除成功】 $del_task_word_plural" $file_upcron_notify
                     done
                 else
                     del_word_line=$((del_task_line-1))
                     del_task_word=$(sed -n "${del_word_line}p" $file_crontab_user | cut -d " " -f 2-)
                     sed -i "${del_word_line},${del_task_line}d" $file_crontab_user
-                    notify_log "[ 移除成功 ] $del_task_word" $file_upcron_notify
+                    notify_log "【移除成功】 $del_task_word" $file_upcron_notify
                 fi
             else
-                notify_log "[ 任务缺失 ] $del_task_name.js" $file_upcron_notify
+                notify_log "【移除失败】 $del_task_name.js ⚠️未发现定时任务" $file_upcron_notify
             fi
         fi
     done
