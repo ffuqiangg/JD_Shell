@@ -148,7 +148,7 @@ add_cron () {
                         notify_log "【添加成功】 $add_task_word ✅" $file_upcron_notify
                     else
                         echo "#$add_task_cron task $add_task_name" >> $file_crontab_user
-                        notify_log "【添加失败】 $add_task_word ⚠️脚本被排除" $file_upcron_notify
+                        notify_log "【添加失败】 $add_task_name.js ⚠️脚本被排除" $file_upcron_notify
                     fi
                 else
                     notify_log "【添加失败】 $add_task_name.js ⚠️定时任务已存在" $file_upcron_notify
