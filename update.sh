@@ -137,7 +137,7 @@ add_cron () {
                 add_task_cron=''
             fi
             if [[ -z $add_task_cron || -z $add_task_word ]]; then
-                notify_log "添加失败❎ $add_task_name.js 无默认定时" $file_upcron_notify
+                notify_log "【添加失败】 $add_task_name.js 无默认定时" $file_upcron_notify
             else
                 task_name=$(grep -nE "<$add_task_name>" $file_crontab_user)
                 if [[ -z $task_name ]]; then
@@ -145,13 +145,13 @@ add_cron () {
                     grepv_script=$(echo $no_cron_list | grep -nE "<$add_task_name>")
                     if [[ -z $grepv_script ]]; then
                         echo "$add_task_cron task $add_task_name" >> $file_crontab_user
-                        notify_log "添加成功✅ $add_task_word" $file_upcron_notify
+                        notify_log "【添加成功】 $add_task_word" $file_upcron_notify
                     else
                         echo "#$add_task_cron task $add_task_name" >> $file_crontab_user
-                        notify_log "添加失败❎ $add_task_name.js 被排除" $file_upcron_notify
+                        notify_log "【添加失败】 $add_task_name.js 被排除" $file_upcron_notify
                     fi
                 else
-                    notify_log "添加失败❎ $add_task_name.js 任务已存在" $file_upcron_notify
+                    notify_log "【添加失败】 $add_task_name.js 任务已存在" $file_upcron_notify
                 fi
             fi
         fi
@@ -174,16 +174,16 @@ del_cron () {
                         del_word_line_plural=$((${del_task_line_plural[i]}-1))
                         del_task_word_plural=$(sed -n "${del_word_line_plural}p" $file_crontab_user | cut -d " " -f 2-)
                         sed -i "${del_word_line_plural},${del_task_line_plural[i]}d" $file_crontab_user
-                        notify_log "移除成功✅ $del_task_word_plural" $file_upcron_notify
+                        notify_log "【移除成功】 $del_task_word_plural" $file_upcron_notify
                     done
                 else
                     del_word_line=$((del_task_line-1))
                     del_task_word=$(sed -n "${del_word_line}p" $file_crontab_user | cut -d " " -f 2-)
                     sed -i "${del_word_line},${del_task_line}d" $file_crontab_user
-                    notify_log "移除成功✅ $del_task_word" $file_upcron_notify
+                    notify_log "【移除成功】 $del_task_word" $file_upcron_notify
                 fi
             else
-                notify_log "移除失败❎ $del_task_name.js 无定时任务" $file_upcron_notify
+                notify_log "【移除失败】 $del_task_name.js 无定时任务" $file_upcron_notify
             fi
         fi
     done
