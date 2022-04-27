@@ -139,10 +139,10 @@ add_cron () {
             if [[ -z $add_task_cron || -z $add_task_word ]]; then
                 notify_log "【添加失败】 $add_task_name.js 无默认定时" $file_upcron_notify
             else
-                task_name=$(grep -nE "<$add_task_name>" $file_crontab_user)
+                task_name=$(grep -n "\<$add_task_name\>" $file_crontab_user)
                 if [[ -z $task_name ]]; then
                     echo "# $add_task_word" >> $file_crontab_user
-                    grepv_script=$(echo $no_cron_list | grep -nE "<$add_task_name>")
+                    grepv_script=$(echo $no_cron_list | grep -n "\<$add_task_name\>")
                     if [[ -z $grepv_script ]]; then
                         echo "$add_task_cron task $add_task_name" >> $file_crontab_user
                         notify_log "【添加成功】 $add_task_word" $file_upcron_notify
@@ -165,7 +165,7 @@ del_cron () {
         if [[ -n $del_cron_list ]]; then
             del_task_name=$(echo $del_cron_list | awk -F "/" '{print $NF}')
             del_task_name=${del_task_name%%.*}
-            del_task_line=$(cat $file_crontab_user | grep -nE "<$del_task_name>" | cut -d ":" -f 1)
+            del_task_line=$(cat $file_crontab_user | grep -n "\<$del_task_name\>" | cut -d ":" -f 1)
             if [[ -n $del_task_line ]]; then
                 del_task_line_nospace=$(echo $del_task_line | sed 's/ //g')
                 if [[ $del_task_line_nospace != $del_task_line ]]; then
