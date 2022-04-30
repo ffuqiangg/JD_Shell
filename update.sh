@@ -115,7 +115,7 @@ update_own_raw () {
     done
 }
 
-## 输出日志及通知文件
+## 输出日志及通知文件 $1 写入内容 $2 日志文件路径
 notify_log () {
     echo "$1"
     echo -n "$1\n" >> $2
